@@ -1,7 +1,5 @@
 # OpenCore Legacy Patcher 3.1.5 Tahoe patchset nightly
-## based on OpenCore Legacy Patcher 3.0.0 Tahoe Fork.
-
-This repository serves as a reference implementation of the last working root patching method for **macOS 26.3**. This project is a [fork of **OCLP 3.0.0 Nightly** ](https://github.com/lzhoang2801/OpenCore-Legacy-Patcher) by `lzhoang2801` (upstream commit: Dec 24, 2025).
+## based on OCLP 3.0.0 Tahoe Fork by `lzhoang2801`  (upstream commit: Dec 24, 2025).
 
 ### 🎯 Purpose & Stability
 This fork specifically restores **modern Wi-Fi (AirDrop/AirPlay)** and audio (**AppleHDA**) functionality on advanced **Hackintosh** systems.
