@@ -9,16 +9,17 @@ This fork specifically restores **modern Wi-Fi (AirDrop/AirPlay)** and audio (**
 *   **Compatibility:** Successfully tested on **macOS 26.3 (25D125) and below**.
 
 ### 🛠 Key Changes & Improvements (Fixed in this Fork)
-1.  **Elevated Privileges:** Added the necessary logic to obtain rights for mounting embedded patch images and system resources. **This fixes the mounting failures present in earlier nightly versions.**
-2.  **Resource Restoration:** Downloads are redirected to a [maintained PatcherSupportPkg mirror](https://github.com/YBronst/PatcherSupportPkg). It contains the complete `Universal-Binaries.dmg` (including AppleHDA), fixing the "missing resources" error in the original upstream.
-3.  **Filesystem Modernization:** Migrated the internal patch structure from HFS+ to **APFS** (thanks to `badbrain`). This ensures compatibility with modern macOS requirements and future KDK-based patching.
-4.  **Core Logic:** The fundamental root patching logic remains unchanged for maximum consistency.
+1.  **Elevated Privileges: Added the necessary logic to obtain rights for mounting internal patch images and system resources.**
+2.  **This fixes the mounting failures present in earlier nightly versions.**
+3.  **It contains the complete `Universal-Binaries.dmg` (including AppleHDA), fixing the "missing resources" eror in the original upstream.**
+6.  **Core Logic:** The fundamental root patching logic remains unchanged for maximum consistency.
 
 ### ⚠️ Compatibility Note: macOS 26.4+
 Starting with **macOS 26.4 beta 1**, Apple introduced fundamental changes that render the OCLP 3.0.0 patching workflow **inoperable**, regardless of the privilege fixes included in this fork:
 *   HFS-based patching workflows are no longer supported by the OS.
 *   The `hdiutil` mounting method used in the 3.0.0 branch.
-*   The OCLP 3.1.5 branch introduces APFS support, enabling the experimental patcher for **macOS 26.3 (25D125) and higher** bat this is subject to the release of a compatible KDK required for the AppleHDA root patch.
+*   The OCLP 3.1.5 branch introduces APFS support, enabling the experimental patcher for **macOS 26.3 (25D125) and higher** bat
+*   this is subject to the release of a compatible KDK required for the AppleHDA root patch.
 *   **Recommendation:** For macOS 26.4 and newer, please use [OCLP-Mod 3.1.5](https://github.com/laobamac/OCLP-Mod/releases) or later, which utilizes a redesigned patching engine.
 
 ### 🔐 AMFI & Security Configuration
@@ -26,6 +27,9 @@ Distributed binaries are **unsigned**. To use them, you must:
 *   Disable `AMFIPass.kext`.
 *   Add boot-args: `amfi=0x80 ipc_control_port_options=0` (the latter is required for apps like Firefox to launch without AMFI).
 
+### Important dependency
+Root patching requires [PatcherSupportPkg resources provided by this preserved mirror](https://github.com/YBronst/PatcherSupportPkg).  
+It contains the complete `Universal-Binaries.dmg` (including AppleHDA), fixing the "missing resources" error in the original upstream.
 ### 🚫 Disclaimer
 This is **not an official Dortania release**. Do not use these patches on unsupported genuine Macs or systems with unsupported GPUs. Only Wi-Fi and Audio patches are expected to function.
 
