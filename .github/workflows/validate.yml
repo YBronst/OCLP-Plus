@@ -12,7 +12,7 @@ jobs:
   build:
     name: Validate
     runs-on: x86_64_monterey
-    if: github.repository_owner == 'dortania'
+    if: github.repository_owner == 'YBronst'
     steps:
       - uses: actions/checkout@v4
       - name: Validate
