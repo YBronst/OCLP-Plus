@@ -202,7 +202,7 @@ class PatcherValidation:
         """
 
         if not Path(self.constants.payload_local_binaries_root_path_dmg).exists():
-            dl_obj = network_handler.DownloadObject(f"https://github.com/dortania/PatcherSupportPkg/releases/download/{self.constants.patcher_support_pkg_version}/Universal-Binaries.dmg", self.constants.payload_local_binaries_root_path_dmg)
+            dl_obj = network_handler.DownloadObject(f"https://github.com/YBronst/PatcherSupportPkg/releases/download/{self.constants.patcher_support_pkg_version}/Universal-Binaries.dmg", self.constants.payload_local_binaries_root_path_dmg)
             dl_obj.download(spawn_thread=False)
             if dl_obj.download_complete is False:
                 logging.info("Failed to download Universal-Binaries.dmg")
