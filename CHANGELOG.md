@@ -1,5 +1,11 @@
 # OpenCore Legacy Patcher changelog
 
+## 3.1.5
+Backward compatibility with macOS Tahoe 26.0–26.3 has been preserved.
+HFS+ Removal: Apple deleted the HFS+ file system in macOS 26.4B1; this version is entirely replaced with APFS to be compatible with the new system.
+hdiutil Permissions: Apple has increased hdiutil permissions in macOS 26.4B1, disallowing mounting without root. This version has been fixed.
+AMFIPass cannot be used with OCLP 3.1.5 due to a persistent kernel panic. Instead, use amfi=0x80 boot argument
+
 ## 3.0.0
 - Restore support for FileVault 2 on macOS 26
 - Add USB mappings for macOS 26
