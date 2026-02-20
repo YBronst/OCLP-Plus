@@ -11,8 +11,8 @@ on:
 jobs:
   build:
     name: Validate
-    runs-on: monterey
-    if: github.repository_owner == 'YBronst'
+    runs-on: x86_64_monterey
+    if: github.repository_owner == ''
     steps:
       - uses: actions/checkout@v4
       - name: Install package requirements
