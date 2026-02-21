@@ -4,10 +4,10 @@
 <dict>
 	<key>AssociatedBundleIdentifiers</key>
 	<array>
-		<string>com.dortania.opencore-legacy-patcher</string>
+		<string>com.ybronst.opencore-legacy-patcher</string>
 	</array>
 	<key>Label</key>
-	<string>com.dortania.opencore-legacy-patcher.rsr-monitor</string>
+	<string>com.ybronst.opencore-legacy-patcher.rsr-monitor</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>rm</string>

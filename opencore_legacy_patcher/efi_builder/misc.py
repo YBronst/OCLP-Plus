@@ -163,7 +163,7 @@ xw
         CPUFriend Handler
         """
 
-        if self.constants.allow_oc_everywhere is False and self.model not in ["iMac7,1", "Xserve2,1", "Dortania1,1"] and self.constants.disallow_cpufriend is False and self.constants.serial_settings != "None":
+        if self.constants.allow_oc_everywhere is False and self.model not in ["iMac7,1", "Xserve2,1", "ybronst1,1"] and self.constants.disallow_cpufriend is False and self.constants.serial_settings != "None":
             support.BuildSupport(self.model, self.constants, self.config).enable_kext("CPUFriend.kext", self.constants.cpufriend_version, self.constants.cpufriend_path)
 
             # CPUFriendDataProvider handling
@@ -292,7 +292,7 @@ xw
             usb_map_path.exists()
             and usb_map_tahoe_path.exists()
             and (self.constants.allow_oc_everywhere is False or self.constants.allow_native_spoofs is True)
-            and self.model not in ["Xserve2,1", "Dortania1,1"]
+            and self.model not in ["Xserve2,1", "ybronst1,1"]
             and (
                 (self.model in model_array.Missing_USB_Map or self.model in model_array.Missing_USB_Map_Ventura)
                 or self.constants.serial_settings in ["Moderate", "Advanced"])

@@ -148,8 +148,8 @@ class BuildFrame(wx.Frame):
 
             # Handle bug from 2.1.0 where None type was stored in config.plist from global settings
             if "TypeError: unsupported type: <class 'NoneType'>" in traceback.format_exc():
-                logging.error("If you continue to see this error, delete the following file and restart the application:")
-                logging.error("Path: /Users/Shared/.com.dortania.opencore-legacy-patcher.plist")
+                logging.error("If you continue to have issues, please report them to ybronst")
+                logging.error("Path: /Users/Shared/.com.ybronst.opencore-legacy-patcher.plist")
 
         logger.removeHandler(logger.handlers[2])
 

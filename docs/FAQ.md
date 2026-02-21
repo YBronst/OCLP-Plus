@@ -46,7 +46,7 @@ Refer to [Updating OpenCore and patches](https://dortania.github.io/OpenCore-Leg
 
 ## Where are the GUI settings saved?
 
-In OpenCore Legacy Patcher 2.1.0 and newer, the status of settings are saved under ```/Users/Shared/.com.dortania.opencore-legacy-patcher.plist```. The application will utilize this file to keep track of and retain settings for relaunches and application updates, no longer requiring a reconfiguring each time. The user interface will reset if any model other than "Host Model" is selected, as building for a different model will require different settings.
+In OpenCore Legacy Patcher 2.1.0 and newer, the status of settings are saved under ```/Users/Shared/.com.ybronst.opencore-legacy-patcher.plist```. The application will utilize this file to keep track of and retain settings for relaunches and application updates, no longer requiring a reconfiguring each time. The user interface will reset if any model other than "Host Model" is selected, as building for a different model will require different settings.
 
 In case of issues, delete the file and restart the application to revert the GUI to default settings, then rebuild OpenCore with newly configured settings.
 

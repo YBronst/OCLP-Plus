@@ -83,7 +83,7 @@ class SettingsFrame(wx.Frame):
         sizer.Add(model_description, 0, wx.ALIGN_CENTER | wx.ALL, 5)
 
         tabs = list(self.settings.keys())
-        if not Path("~/.dortania_developer").expanduser().exists():
+        if not Path("~/.ybronst_developer").expanduser().exists():
             tabs.remove("Developer")
         for tab in tabs:
             panel = wx.Panel(notebook)
@@ -839,7 +839,7 @@ class SettingsFrame(wx.Frame):
                     "variable": "DisableCrashAndAnalyticsReporting",
                     "description": [
                         "When enabled, patcher will not",
-                        "report any info to Dortania.",
+                        "report any info to ybronst.",
                     ],
                     "override_function": self._update_global_settings,
                 },
@@ -1209,7 +1209,7 @@ Hardware Information:
 
 
     def on_generate_serial_number(self, event: wx.Event) -> None:
-        dlg = wx.MessageDialog(self.frame_modal, "Please take caution when using serial spoofing. This should only be used on machines that were legally obtained and require reserialization.\n\nNote: new serials are only overlayed through OpenCore and are not permanently installed into ROM.\n\nMisuse of this setting can break power management and other aspects of the OS if the system does not need spoofing\n\nDortania does not condone the use of our software on stolen devices.\n\nAre you certain you want to continue?", "Warning", wx.YES_NO | wx.ICON_WARNING | wx.NO_DEFAULT)
+        dlg = wx.MessageDialog(self.frame_modal, "Please take caution when using serial spoofing. This should only be used on machines that were legally obtained and require reserialization.\n\nNote: new serials are only overlayed through OpenCore and are not permanently installed into ROM.\n\nMisuse of this setting can break power management and other aspects of the OS if the system does not need spoofing\n\nybronst does not condone the use of our software on stolen devices.\n\nAre you certain you want to continue?", "Warning", wx.YES_NO | wx.ICON_WARNING | wx.NO_DEFAULT)
         if dlg.ShowModal() != wx.ID_YES:
             return
 
@@ -1351,7 +1351,7 @@ Hardware Information:
         branches = ["main"]
         if self.constants.commit_info[0] not in ["Running from source", "Built from source"]:
             branches = [self.constants.commit_info[0].split("/")[-1]]
-        result = network_handler.NetworkUtilities().get("https://api.github.com/repos/dortania/OpenCore-Legacy-Patcher/branches")
+        result = network_handler.NetworkUtilities().get("https://api.github.com/repos/YBronst/OpenCore-Legacy-Patcher/branches")
         if result is not None:
             result = result.json()
             for branch in result:
@@ -1373,7 +1373,7 @@ Hardware Information:
             title=self.title,
             global_constants=self.constants,
             screen_location=self.parent.GetPosition(),
-            url=f"https://nightly.link/dortania/OpenCore-Legacy-Patcher/workflows/build-app-wxpython/{branch}/OpenCore-Patcher.pkg.zip",
+            url=f"https://nightly.link/YBronst/OpenCore-Legacy-Patcher/workflows/build-app-wxpython/{branch}/OpenCore-Patcher.pkg.zip",
             version_label="(Nightly)"
         )
 

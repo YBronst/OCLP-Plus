@@ -10,7 +10,7 @@ import subprocess
 from pathlib import Path
 
 
-OCLP_PRIVILEGED_HELPER = "/Library/PrivilegedHelperTools/com.dortania.opencore-legacy-patcher.privileged-helper"
+OCLP_PRIVILEGED_HELPER = "/Library/PrivilegedHelperTools/com.ybronst.opencore-legacy-patcher.privileged-helper"
 
 
 class PrivilegedHelperErrorCodes(enum.IntEnum):

@@ -9,7 +9,7 @@
 	<key>CFBundleIconFile</key>
 	<string>OC-Patcher.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.dortania.opencore-legacy-patcher-helper</string>
+	<string>com.ybronst.opencore-legacy-patcher-helper</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

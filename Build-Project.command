@@ -78,7 +78,7 @@ def main() -> None:
     if (args.run_as_individual_steps is False) or (args.run_as_individual_steps and args.prepare_application):
         # Prepare Privileged Helper Tool
         sign_notarize.SignAndNotarize(
-            path=Path("./ci_tooling/privileged_helper_tool/com.dortania.opencore-legacy-patcher.privileged-helper"),
+            path=Path("./ci_tooling/privileged_helper_tool/com.ybronst.opencore-legacy-patcher.privileged-helper"),
             signing_identity=args.application_signing_identity,
             notarization_apple_id=args.notarization_apple_id,
             notarization_password=args.notarization_password,

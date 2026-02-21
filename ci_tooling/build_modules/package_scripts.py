@@ -176,7 +176,7 @@ class ZSHFunctions:
         _script = ""
 
         _script += "function _fixSettingsFilePermission() {\n"
-        _script += "    local settingsPath=\"$pathToTargetVolume/Users/Shared/.com.dortania.opencore-legacy-patcher.plist\"\n\n"
+        _script += "    local settingsPath=\"$pathToTargetVolume/Users/Shared/.com.ybronst.opencore-legacy-patcher.plist\"\n\n"
 
         _script += "    if [[ -e $settingsPath ]]; then\n"
         _script += "        echo \"Fixing settings file permissions: $settingsPath\"\n"
@@ -233,7 +233,7 @@ class ZSHFunctions:
         _script = ""
 
         _script += "function _cleanLaunchService() {\n"
-        _script += "    local domain=\"com.dortania.opencore-legacy-patcher\"\n\n"
+        _script += "    local domain=\"com.ybronst.opencore-legacy-patcher\"\n\n"
 
         _script += "    # Iterate over launch agents and daemons\n"
         _script += "    for launchServiceVariant in \"$pathToTargetVolume/Library/LaunchAgents\" \"$pathToTargetVolume/Library/LaunchDaemons\"; do\n"
@@ -316,13 +316,13 @@ class GenerateScripts:
 
         self.files = [
             "Applications/OpenCore-Patcher.app",
-            "Library/Application Support/Dortania/Update.plist",
-            "Library/Application Support/Dortania/OpenCore-Patcher.app",
-            "Library/PrivilegedHelperTools/com.dortania.opencore-legacy-patcher.privileged-helper"
+            "Library/Application Support/ybronst/Update.plist",
+            "Library/Application Support/ybronst/OpenCore-Patcher.app",
+            "Library/PrivilegedHelperTools/com.ybronst.opencore-legacy-patcher.privileged-helper"
         ]
 
         self.additional_auto_pkg_files = [
-            "Library/LaunchAgents/com.dortania.opencore-legacy-patcher.auto-patch.plist"
+            "Library/LaunchAgents/com.ybronst.opencore-legacy-patcher.auto-patch.plist"
         ]
 
 
@@ -428,8 +428,8 @@ class GenerateScripts:
         _script += self._generate_label_bar()
         _script += "\n"
 
-        _script += "helperPath=\"Library/PrivilegedHelperTools/com.dortania.opencore-legacy-patcher.privileged-helper\"\n"
-        _script += "mainAppPath=\"Library/Application Support/Dortania/OpenCore-Patcher.app\"\n"
+        _script += "helperPath=\"Library/PrivilegedHelperTools/com.ybronst.opencore-legacy-patcher.privileged-helper\"\n"
+        _script += "mainAppPath=\"Library/Application Support/ybronst/OpenCore-Patcher.app\"\n"
         _script += "shimAppPath=\"Applications/OpenCore-Patcher.app\"\n"
         if is_autopkg:
             _script += "executablePath=\"$mainAppPath/Contents/MacOS/OpenCore-Patcher\"\n"

@@ -4,13 +4,13 @@
 <dict>
 	<key>AssociatedBundleIdentifiers</key>
 	<array>
-		<string>com.dortania.opencore-legacy-patcher</string>
+		<string>com.ybronst.opencore-legacy-patcher</string>
 	</array>
 	<key>Label</key>
-	<string>com.dortania.opencore-legacy-patcher.auto-patch</string>
+	<string>com.ybronst.opencore-legacy-patcher.auto-patch</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/Library/Application Support/Dortania/OpenCore-Patcher.app/Contents/MacOS/OpenCore-Patcher</string>
+		<string>/Library/Application Support/ybronst/OpenCore-Patcher.app/Contents/MacOS/OpenCore-Patcher</string>
 		<string>--auto_patch</string>
 	</array>
 	<key>RunAtLoad</key>

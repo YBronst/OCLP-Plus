@@ -73,13 +73,13 @@ class InitializeLoggingSupport:
             # Likely in an installer environment, store in /Users/Shared
             base_path = Path("/Users/Shared")
         else:
-            # create Dortania folder if it doesn't exist
-            base_path = base_path / "Dortania"
+            # create ybronst folder if it doesn't exist
+            base_path = base_path / "ybronst"
             if not base_path.exists():
                 try:
                     base_path.mkdir()
                 except Exception as e:
-                    print(f"Failed to create Dortania folder: {e}")
+                    print(f"Failed to create ybronst folder: {e}")
                     base_path = Path("/Users/Shared")
 
         self.log_filepath = Path(f"{base_path}/{self.log_filename}").expanduser()
@@ -93,7 +93,7 @@ class InitializeLoggingSupport:
         """
 
         paths = [
-            self.log_filepath.parent,        # ~/Library/Logs/Dortania
+            self.log_filepath.parent,        # ~/Library/Logs/ybronst
             self.log_filepath.parent.parent, # ~/Library/Logs (old location)
         ]
 

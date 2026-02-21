@@ -13,7 +13,7 @@
 If the application won't launch (e.g. icon will bounce in the Dock), try launching OCLP via Terminal by typing the following command.
 
 ```sh
-/Library/Application Support/Dortania/OpenCore-Patcher.app/Contents/MacOS/OpenCore-Patcher
+/Library/Application Support/ybronst/OpenCore-Patcher.app/Contents/MacOS/OpenCore-Patcher
 ```
 
 ## Privileged Helper Tool not found

@@ -15,7 +15,7 @@ class Constants:
         # Patcher Versioning
         self.patcher_version:                 str = "3.1.6"  # OpenCore-Legacy-Patcher
         self.patcher_support_pkg_version:     str = "1.9.7"  # PatcherSupportPkg
-        self.copyright_date:                  str = "Copyright © 2020-2025 Dortania"
+        self.copyright_date:                  str = "Copyright © 2020-2025 ybronst"
         self.patcher_name:                    str = "OpenCore Legacy Patcher"
 
         # URLs
@@ -76,7 +76,7 @@ class Constants:
         self.apple_spi_hid_version: str = "1.0.0"  #  AppleHSSPIHIDDriver (14.4 Beta 1)
         self.kernel_relay_version:  str = "1.0.0"  #  KernelRelayHost (15.0 Beta 3)
 
-        ## Apple - Dortania Modified
+        ## Apple - ybronst Modified
         self.bcm570_version:           str = "1.0.2"  # CatalinaBCM5701Ethernet
         self.i210_version:             str = "1.0.0"  # CatalinaIntelI210Ethernet
         self.corecaptureelcap_version: str = "1.0.2"  # corecaptureElCap
@@ -89,7 +89,7 @@ class Constants:
         ## Apple - Jazzzny Modified
         self.aquantia_version: str = "1.1.0"  # AppleEthernetAbuantiaAqtion
 
-        ## Dortania
+        ## ybronst
         ## https://github.com/dortania
         self.backlight_injector_version:     str = "1.1.0"  # BacklightInjector
         self.backlight_injectorA_version:    str = "1.0.0"  # BacklightInjector (iMac9,1)
@@ -105,7 +105,7 @@ class Constants:
         ## Syncretic
         ## https://forums.macrumors.com/members/syncretic.1173816/
         ## https://github.com/reenigneorcim/latebloom
-        self.mousse_version:     str = "0.95-Dortania"  # MouSSE
+        self.mousse_version:     str = "0.95-ybronst"  # MouSSE
         self.telemetrap_version: str = "1.0.0"  #         telemetrap
 
         ## cdf
@@ -277,7 +277,7 @@ class Constants:
 
     @property
     def overlay_psp_path_dmg(self):
-        return self.original_path / Path("DortaniaInternalResources.dmg")
+        return self.original_path / Path("YBronstInternalResources.dmg")
 
     # OpenCore
     @property
@@ -295,19 +295,19 @@ class Constants:
 
     @property
     def auto_patch_launch_agent_path(self):
-        return self.launch_services_path / Path("com.dortania.opencore-legacy-patcher.auto-patch.plist")
+        return self.launch_services_path / Path("com.ybronst.opencore-legacy-patcher.auto-patch.plist")
 
     @property
     def rsr_monitor_launch_daemon_path(self):
-        return self.launch_services_path / Path("com.dortania.opencore-legacy-patcher.rsr-monitor.plist")
+        return self.launch_services_path / Path("com.ybronst.opencore-legacy-patcher.rsr-monitor.plist")
 
     @property
     def update_launch_daemon_path(self):
-        return self.launch_services_path / Path("com.dortania.opencore-legacy-patcher.macos-update.plist")
+        return self.launch_services_path / Path("com.ybronst.opencore-legacy-patcher.macos-update.plist")
 
     @property
     def kdk_launch_daemon_path(self):
-        return self.launch_services_path / Path("com.dortania.opencore-legacy-patcher.os-caching.plist")
+        return self.launch_services_path / Path("com.ybronst.opencore-legacy-patcher.os-caching.plist")
 
     # ACPI
     @property

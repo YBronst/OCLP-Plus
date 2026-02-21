@@ -40,10 +40,10 @@ class InstallAutomaticPatchingServices:
             return
 
         services = {
-            self.constants.auto_patch_launch_agent_path:        "/Library/LaunchAgents/com.dortania.opencore-legacy-patcher.auto-patch.plist",
-            self.constants.update_launch_daemon_path:           "/Library/LaunchDaemons/com.dortania.opencore-legacy-patcher.macos-update.plist",
-            **({ self.constants.rsr_monitor_launch_daemon_path: "/Library/LaunchDaemons/com.dortania.opencore-legacy-patcher.rsr-monitor.plist" } if self._create_rsr_monitor_daemon() else {}),
-            **({ self.constants.kdk_launch_daemon_path:         "/Library/LaunchDaemons/com.dortania.opencore-legacy-patcher.os-caching.plist" } if kdk_caching_needed is True else {} ),
+            self.constants.auto_patch_launch_agent_path:        "/Library/LaunchAgents/com.ybronst.opencore-legacy-patcher.auto-patch.plist",
+            self.constants.update_launch_daemon_path:           "/Library/LaunchDaemons/com.ybronst.opencore-legacy-patcher.macos-update.plist",
+            **({ self.constants.rsr_monitor_launch_daemon_path: "/Library/LaunchDaemons/com.ybronst.opencore-legacy-patcher.rsr-monitor.plist" } if self._create_rsr_monitor_daemon() else {}),
+            **({ self.constants.kdk_launch_daemon_path:         "/Library/LaunchDaemons/com.ybronst.opencore-legacy-patcher.os-caching.plist" } if kdk_caching_needed is True else {} ),
         }
 
         for service in services:

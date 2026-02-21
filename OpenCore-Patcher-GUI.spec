@@ -22,8 +22,8 @@ datas = [
    ('Universal-Binaries.dmg', '.'),
 ]
 
-if Path("DortaniaInternalResources.dmg").exists():
-   datas.append(('DortaniaInternalResources.dmg', '.'))
+if Path("YBronstInternalResources.dmg").exists():
+   datas.append(('YBronstInternalResources.dmg', '.'))
 
 
 a = Analysis(['OpenCore-Patcher-GUI.command'],
@@ -71,7 +71,7 @@ coll = COLLECT(exe,
 app = BUNDLE(coll,
              name='OpenCore-Patcher.app',
              icon="payloads/Icon/AppIcons/OC-Patcher.icns",
-             bundle_identifier="com.dortania.opencore-legacy-patcher",
+             bundle_identifier="com.ybronst.opencore-legacy-patcher",
              info_plist={
                 "CFBundleName": "OpenCore Legacy Patcher",
                 "CFBundleVersion": constants.Constants().patcher_version,

@@ -151,8 +151,8 @@ class UpdateFrame(wx.Frame):
         installed_label.SetFont(gui_support.font_factory(13, wx.FONTWEIGHT_BOLD))
         installed_label.Centre(wx.HORIZONTAL)
 
-        # Label: '/Library/Application Support/Dortania'
-        installed_path_label = wx.StaticText(self.frame, label='/Library/Application Support/Dortania', pos=(-1, installed_label.GetPosition().y + 20))
+        # Label: '/Library/Application Support/ybronst'
+        installed_path_label = wx.StaticText(self.frame, label='/Library/Application Support/ybronst', pos=(-1, installed_label.GetPosition().y + 20))
         installed_path_label.SetFont(gui_support.font_factory(13, wx.FONTWEIGHT_NORMAL))
         installed_path_label.Centre(wx.HORIZONTAL)
 
@@ -238,5 +238,5 @@ class UpdateFrame(wx.Frame):
         """
         Launches newly installed update
         """
-        logging.info("Launching update: '/Library/Application Support/Dortania/OpenCore-Patcher.app'")
-        subprocess.Popen(["/Library/Application Support/Dortania/OpenCore-Patcher.app/Contents/MacOS/OpenCore-Patcher", "--update_installed"])
+        logging.info("Launching update: '/Library/Application Support/ybronst/OpenCore-Patcher.app'")
+        subprocess.Popen(["/Library/Application Support/ybronst/OpenCore-Patcher.app/Contents/MacOS/OpenCore-Patcher", "--update_installed"])

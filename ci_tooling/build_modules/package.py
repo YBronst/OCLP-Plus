@@ -20,11 +20,11 @@ class GeneratePackage:
         Initialize
         """
         self._files = {
-            "./dist/OpenCore-Patcher.app": "/Library/Application Support/Dortania/OpenCore-Patcher.app",
-            "./ci_tooling/privileged_helper_tool/com.dortania.opencore-legacy-patcher.privileged-helper": "/Library/PrivilegedHelperTools/com.dortania.opencore-legacy-patcher.privileged-helper",
+            "./dist/OpenCore-Patcher.app": "/Library/Application Support/ybronst/OpenCore-Patcher.app",
+            "./ci_tooling/privileged_helper_tool/com.ybronst.opencore-legacy-patcher.privileged-helper": "/Library/PrivilegedHelperTools/com.ybronst.opencore-legacy-patcher.privileged-helper",
         }
         self._autopkg_files = {
-            "./payloads/Launch Services/com.dortania.opencore-legacy-patcher.auto-patch.plist": "/Library/LaunchAgents/com.dortania.opencore-legacy-patcher.auto-patch.plist",
+            "./payloads/Launch Services/com.ybronst.opencore-legacy-patcher.auto-patch.plist": "/Library/LaunchAgents/com.ybronst.opencore-legacy-patcher.auto-patch.plist",
         }
         self._autopkg_files.update(self._files)
 
@@ -92,7 +92,7 @@ class GeneratePackage:
 
         assert macos_pkg_builder.Packages(
             pkg_output="./dist/OpenCore-Patcher-Uninstaller.pkg",
-            pkg_bundle_id="com.dortania.opencore-legacy-patcher-uninstaller",
+            pkg_bundle_id="com.ybronst.opencore-legacy-patcher-uninstaller",
             pkg_version=constants.Constants().patcher_version,
             pkg_background="./ci_tooling/pkg_assets/PkgBackground-Uninstaller.png",
             pkg_preinstall_script=_tmp_uninstall.name,
@@ -112,7 +112,7 @@ class GeneratePackage:
 
         assert macos_pkg_builder.Packages(
             pkg_output="./dist/OpenCore-Patcher.pkg",
-            pkg_bundle_id="com.dortania.opencore-legacy-patcher",
+            pkg_bundle_id="com.ybronst.opencore-legacy-patcher",
             pkg_version=constants.Constants().patcher_version,
             pkg_allow_relocation=False,
             pkg_as_distribution=True,
@@ -135,7 +135,7 @@ class GeneratePackage:
 
         assert macos_pkg_builder.Packages(
             pkg_output="./dist/AutoPkg-Assets.pkg",
-            pkg_bundle_id="com.dortania.pkg.AutoPkg-Assets",
+            pkg_bundle_id="com.ybronst.pkg.AutoPkg-Assets",
             pkg_version=constants.Constants().patcher_version,
             pkg_allow_relocation=False,
             pkg_as_distribution=True,

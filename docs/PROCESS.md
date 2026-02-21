@@ -15,5 +15,5 @@ If you decide to disable the background process, the KDK installation for each u
 ::: warning  Note:
 
 In some cases macOS may report background process being added by "Mykola Grymalyuk", this happens due to a macOS bug where sometimes the developer name who sent the app for notarization is shown instead of the application name.
-Dortania cannot do anything about this.
+ybronst cannot do anything about this.
 :::
