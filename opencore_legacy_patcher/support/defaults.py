@@ -54,7 +54,7 @@ class GenerateDefaults:
         self.constants.disallow_cpufriend = False
         self.constants.disable_mediaanalysisd = False
         self.constants.set_alc_usage = True
-        self.constants.allow_modern_audio = True
+        self.constants.allow_modern_audio = False
         self.constants.nvram_write = True
         self.constants.allow_nvme_fixing = True
         self.constants.allow_3rd_party_drives = True

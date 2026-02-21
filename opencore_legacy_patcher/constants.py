@@ -15,7 +15,7 @@ class Constants:
         # Patcher Versioning
         self.patcher_version:                 str = "3.1.6"  # OpenCore-Legacy-Patcher
         self.patcher_support_pkg_version:     str = "1.9.7"  # PatcherSupportPkg
-        self.copyright_date:                  str = "Copyright © 2020-2025 ybronst"
+        self.copyright_date:                  str = "Copyright © 2020-2025 Dortania"
         self.patcher_name:                    str = "OpenCore Legacy Patcher"
 
         # URLs
@@ -237,7 +237,7 @@ class Constants:
         self.disable_mediaanalysisd: bool = False  # Set mediaanalysisd to spawn
         self.force_quad_thread:      bool = False #  Force quad thread mode (cpus=4)
         self.set_alc_usage:          bool = True  #  Set AppleALC usage
-        self.allow_modern_audio:     bool = True  #  Set Modern Audio support
+        self.allow_modern_audio:     bool = False #  Set Modern Audio support
         self.allow_3rd_party_drives: bool = True  #  Allow ThridPartyDrives quirk
         self.allow_nvme_fixing:      bool = True  #  Allow NVMe Kernel Space Patches
         self.apfs_trim_timeout:      bool = True  #  Set APFS Trim timeout
