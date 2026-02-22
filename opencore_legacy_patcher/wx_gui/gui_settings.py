@@ -712,6 +712,9 @@ class SettingsFrame(wx.Frame):
                     "override_function": self._update_global_settings,
                     "condition": not bool(self.constants.computer.real_model not in ["MacBookPro8,2", "MacBookPro8,3"])
                 },
+                "wrap_around 1": {
+                    "type": "wrap_around",
+                },
                 "Modern Audio": {
                     "type": "checkbox",
                     "value": self.constants.allow_modern_audio,
@@ -723,9 +726,6 @@ class SettingsFrame(wx.Frame):
                         "for the current OS version.",
                     ],
                     "condition": self.constants.detected_os >= os_data.os_data.tahoe
-                },
-                "wrap_around 1": {
-                    "type": "wrap_around",
                 },
                 "Non-Metal Configuration": {
                     "type": "title",
