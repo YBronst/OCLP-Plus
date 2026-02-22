@@ -8,6 +8,7 @@ from packaging import version
 
 from .datasets import os_data
 from .detections import device_probe
+from .support import language_handler
 
 
 class Constants:
@@ -158,6 +159,8 @@ class Constants:
         self.log_filepath:              Path = None  #  Path to log file
         self.thread_sleep_interval:    float = 0.01  #  Sleep interval between UI updates (seconds) - balance between UI responsiveness and CPU usage
 
+        self.language:                  str = "Auto"
+        self._translator: language_handler.Translator = None
         self.commit_info: tuple = (None, None, None)  # Commit info (Branch, Commit Date, Commit URL)
 
         ## Hardware
@@ -252,6 +255,12 @@ class Constants:
             os_data.os_data.sonoma,
             os_data.os_data.sequoia,
         ]
+
+    @property
+    def translator(self):
+        if self._translator is None or self._translator.requested_language != self.language:
+            self._translator = language_handler.Translator(self.language)
+        return self._translator
 
     @property
     def special_build(self):

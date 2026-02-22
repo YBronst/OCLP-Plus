@@ -56,17 +56,18 @@ class GenerateMenubar:
     def __init__(self, frame: wx.Frame, global_constants: constants.Constants) -> None:
         self.frame: wx.Frame = frame
         self.constants: constants.Constants = global_constants
+        self._ = self.constants.translator.translate
 
 
     def generate(self) -> wx.MenuBar:
         menubar = wx.MenuBar()
         fileMenu = wx.Menu()
 
-        aboutItem = fileMenu.Append(wx.ID_ABOUT, "&About OpenCore Legacy Patcher")
+        aboutItem = fileMenu.Append(wx.ID_ABOUT, f"&{self._('About OpenCore Legacy Patcher')}")
         fileMenu.AppendSeparator()
-        revealLogItem = fileMenu.Append(wx.ID_ANY, "&Reveal Log File")
+        revealLogItem = fileMenu.Append(wx.ID_ANY, f"&{self._('Reveal Log File')}")
 
-        menubar.Append(fileMenu, "&File")
+        menubar.Append(fileMenu, f"&{self._('File')}")
         self.frame.SetMenuBar(menubar)
 
         self.frame.Bind(wx.EVT_MENU, lambda event: gui_about.AboutFrame(self.constants), aboutItem)

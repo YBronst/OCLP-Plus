@@ -42,6 +42,7 @@ class SettingsFrame(wx.Frame):
     def __init__(self, parent: wx.Frame, title: str, global_constants: constants.Constants, screen_location: tuple = None):
         logging.info("Initializing Settings Frame")
         self.constants: constants.Constants = global_constants
+        self._ = self.constants.translator.translate
         self.title: str = title
         self.parent: wx.Frame = parent
 
@@ -67,18 +68,19 @@ class SettingsFrame(wx.Frame):
         sizer = wx.BoxSizer(wx.VERTICAL)
         sizer.AddSpacer(10)
 
-        model_label = wx.StaticText(frame, label="Target Model", pos=(-1, -1))
+        model_label = wx.StaticText(frame, label=self._("Target Model"), pos=(-1, -1))
         model_label.SetFont(gui_support.font_factory(13, wx.FONTWEIGHT_BOLD))
         sizer.Add(model_label, 0, wx.ALIGN_CENTER | wx.ALL, 5)
 
-        model_choice = wx.Choice(frame, choices=model_array.SupportedSMBIOS + ["Host Model"], pos=(-1, -1), size=(150, -1))
+        model_choices = model_array.SupportedSMBIOS + [self._("Host Model")]
+        model_choice = wx.Choice(frame, choices=model_choices, pos=(-1, -1), size=(150, -1))
         model_choice.SetFont(gui_support.font_factory(13, wx.FONTWEIGHT_NORMAL))
         model_choice.Bind(wx.EVT_CHOICE, lambda event: self.on_model_choice(event, model_choice))
-        selection = self.constants.custom_model if self.constants.custom_model else "Host Model"
+        selection = self.constants.custom_model if self.constants.custom_model else self._("Host Model")
         model_choice.SetSelection(model_choice.FindString(selection))
         sizer.Add(model_choice, 0, wx.ALIGN_CENTER | wx.ALL, 5)
 
-        model_description = wx.StaticText(frame, label="Overrides Mac Model the Patcher will build for.", pos=(-1, -1))
+        model_description = wx.StaticText(frame, label=self._("Overrides Mac Model the Patcher will build for."), pos=(-1, -1))
         model_description.SetFont(gui_support.font_factory(11, wx.FONTWEIGHT_NORMAL))
         sizer.Add(model_description, 0, wx.ALIGN_CENTER | wx.ALL, 5)
 
@@ -87,12 +89,12 @@ class SettingsFrame(wx.Frame):
             tabs.remove("Developer")
         for tab in tabs:
             panel = wx.Panel(notebook)
-            notebook.AddPage(panel, tab)
+            notebook.AddPage(panel, self._(tab))
 
         sizer.Add(notebook, 1, wx.EXPAND | wx.ALL, 10)
 
         # Add return button
-        return_button = wx.Button(frame, label="Return", pos=(-1, -1), size=(100, 30))
+        return_button = wx.Button(frame, label=self._("Return"), pos=(-1, -1), size=(100, 30))
         return_button.Bind(wx.EVT_BUTTON, self.on_return)
         return_button.SetFont(gui_support.font_factory(13, wx.FONTWEIGHT_NORMAL))
         sizer.Add(return_button, 0, wx.ALIGN_CENTER | wx.ALL, 10)
@@ -132,7 +134,7 @@ class SettingsFrame(wx.Frame):
                     height += 10
 
                     # Add title
-                    title = wx.StaticText(panel, label=setting, pos=(-1, -1))
+                    title = wx.StaticText(panel, label=self._(setting), pos=(-1, -1))
                     title.SetFont(gui_support.font_factory(19, wx.FONTWEIGHT_BOLD))
 
                     title.SetPosition((int(horizontal_center) - int(title.GetSize()[0] / 2) - 15, height))
@@ -142,7 +144,7 @@ class SettingsFrame(wx.Frame):
 
                 if setting_info["type"] == "sub_title":
                     # Add sub-title
-                    sub_title = wx.StaticText(panel, label=setting, pos=(-1, -1))
+                    sub_title = wx.StaticText(panel, label=self._(setting), pos=(-1, -1))
                     sub_title.SetFont(gui_support.font_factory(13, wx.FONTWEIGHT_NORMAL))
 
                     sub_title.SetPosition((int(horizontal_center) - int(sub_title.GetSize()[0] / 2) - 15, height))
@@ -157,7 +159,7 @@ class SettingsFrame(wx.Frame):
 
                 if setting_info["type"] == "checkbox":
                     # Add checkbox, and description underneath
-                    checkbox = wx.CheckBox(panel, label=setting, pos=(10 + width, 10 + height), size = (300,-1))
+                    checkbox = wx.CheckBox(panel, label=self._(setting), pos=(10 + width, 10 + height), size = (300,-1))
 
                     value = False
                     if "value" in setting_info:
@@ -182,16 +184,17 @@ class SettingsFrame(wx.Frame):
                     spinctrl.SetFont(gui_support.font_factory(13, wx.FONTWEIGHT_BOLD))
                     spinctrl.Bind(wx.EVT_TEXT, lambda event, variable=setting: self.on_spinctrl(event, variable))
                     # Add label next to spinctrl
-                    label = wx.StaticText(panel, label=setting, pos=(spinctrl.GetSize()[0] + width - 16, spinctrl.GetPosition()[1]))
+                    label = wx.StaticText(panel, label=self._(setting), pos=(spinctrl.GetSize()[0] + width - 16, spinctrl.GetPosition()[1]))
                     label.SetFont(gui_support.font_factory(13, wx.FONTWEIGHT_BOLD))
                 elif setting_info["type"] == "choice":
                     # Title
-                    title = wx.StaticText(panel, label=setting, pos=(width + 30, 10 + height))
+                    title = wx.StaticText(panel, label=self._(setting), pos=(width + 30, 10 + height))
                     title.SetFont(gui_support.font_factory(13, wx.FONTWEIGHT_BOLD))
                     height += title.GetSize()[1] + 10
 
                     # Add combobox, and description underneath
-                    choice = wx.Choice(panel, pos=(width + 25, 10 + height), choices=setting_info["choices"], size = (150,-1))
+                    translated_choices = [self._(choice) for choice in setting_info["choices"]]
+                    choice = wx.Choice(panel, pos=(width + 25, 10 + height), choices=translated_choices, size = (150,-1))
                     choice.SetFont(gui_support.font_factory(13, wx.FONTWEIGHT_NORMAL))
                     choice.SetSelection(choice.FindString(setting_info["value"]))
                     if "override_function" in setting_info:
@@ -200,7 +203,7 @@ class SettingsFrame(wx.Frame):
                         choice.Bind(wx.EVT_CHOICE, lambda event, variable=setting: self.on_choice(event, variable))
                     height += 10
                 elif setting_info["type"] == "button":
-                    button = wx.Button(panel, label=setting, pos=(width + 25, 10 + height), size = (200,-1))
+                    button = wx.Button(panel, label=self._(setting), pos=(width + 25, 10 + height), size = (200,-1))
                     button.SetFont(gui_support.font_factory(13, wx.FONTWEIGHT_NORMAL))
                     button.Bind(wx.EVT_BUTTON, lambda event, variable=setting: self.settings[tab][variable]["function"](event))
                     height += 10
@@ -208,7 +211,7 @@ class SettingsFrame(wx.Frame):
                 else:
                     raise Exception("Invalid setting type")
 
-                lines = '\n'.join(setting_info["description"])
+                lines = '\n'.join([self._(line) for line in setting_info["description"]])
                 description = wx.StaticText(panel, label=lines, pos=(30 + width, 10 + height + 20))
                 description.SetFont(gui_support.font_factory(11, wx.FONTWEIGHT_NORMAL))
                 height += 40
@@ -820,6 +823,20 @@ class SettingsFrame(wx.Frame):
                     ],
                     "warning": "This option should only be used if your Mac natively supports the OSes you wish to run.\n\nIf you are currently running an unsupported OS, this option will break booting. Only toggle for enabling OS features on a native Mac.\n\nAre you certain you want to continue?",
                 },
+                "Language": {
+                    "type": "choice",
+                    "choices": [
+                        "Auto",
+                        "English",
+                        "Russian",
+                    ],
+                    "value": self.constants.language,
+                    "variable": "language",
+                    "description": [
+                        "Configure the application language.",
+                    ],
+                    "override_function": self.on_language_choice
+                },
                 "Ignore App Updates": {
                     "type": "checkbox",
                     "value": global_settings.GlobalEnviromentSettings().read_property("IgnoreAppUpdates") or self.constants.ignore_updates,
@@ -928,7 +945,7 @@ class SettingsFrame(wx.Frame):
         """
 
         selection = model_choice.GetStringSelection()
-        if selection == "Host Model":
+        if selection == self._("Host Model"):
             selection = self.constants.computer.real_model
             self.constants.custom_model = None
             logging.info(f"Using Real Model: {self.constants.computer.real_model}")
@@ -1205,7 +1222,51 @@ Hardware Information:
         """
         """
         value = event.GetString()
-        self._update_setting(self.settings[self._find_parent_for_key(label)][label]["variable"], value)
+        internal_value = self._get_internal_choice(label, value)
+        self._update_setting(self.settings[self._find_parent_for_key(label)][label]["variable"], internal_value)
+
+
+    def _get_internal_choice(self, label, translated_value):
+        parent = self._find_parent_for_key(label)
+        if not parent:
+            return translated_value
+        setting_info = self.settings[parent][label]
+        if "choices" in setting_info:
+            for original in setting_info["choices"]:
+                if self._(original) == translated_value:
+                    return original
+        return translated_value
+
+
+    def on_language_choice(self, event: wx.Event) -> None:
+        """
+        Sets language to use for the GUI.
+        """
+        value = event.GetString()
+        # Map translated back to original if necessary, but here we expect translated strings in Choice
+        # Actually, self.on_language_choice is called with translated strings.
+        # We need to map them back to internal values.
+
+        language_map = {
+            self._("Auto"): "Auto",
+            self._("English"): "English",
+            self._("Russian"): "Russian",
+        }
+
+        internal_value = language_map.get(value, "Auto")
+
+        logging.info(f"Updating Language Selection: {internal_value}")
+        self.constants.language = internal_value
+        global_settings.GlobalEnviromentSettings().write_property("GUI:language", internal_value)
+
+        # Refresh the frame to apply changes
+        self.frame_modal.Destroy()
+        SettingsFrame(
+            parent=self.parent,
+            title=self.title,
+            global_constants=self.constants,
+            screen_location=self.parent.GetPosition()
+        )
 
 
     def on_generate_serial_number(self, event: wx.Event) -> None:
@@ -1250,7 +1311,7 @@ Hardware Information:
 
     def fu_selection_click(self, event: wx.Event) -> None:
         value = event.GetEventObject().GetStringSelection()
-        if value == "Enabled":
+        if value == self._("Enabled"):
             logging.info("Updating FU Status: Enabled")
             self.constants.fu_status = True
             self.constants.fu_arguments = None
@@ -1258,7 +1319,7 @@ Hardware Information:
             global_settings.GlobalEnviromentSettings().write_property("GUI:fu_arguments", "PYTHON_NONE_VALUE")
             return
 
-        if value == "Partial":
+        if value == self._("Partial"):
             logging.info("Updating FU Status: Partial")
             self.constants.fu_status = True
             self.constants.fu_arguments = " -disable_sidecar_mac"

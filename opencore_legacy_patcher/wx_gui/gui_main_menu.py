@@ -40,6 +40,7 @@ class MainFrame(wx.Frame):
         gui_support.GenerateMenubar(self, global_constants).generate()
 
         self.constants: constants.Constants = global_constants
+        self._ = self.constants.translator.translate
         self.title: str = title
 
         self.model_label: wx.StaticText = None
@@ -81,13 +82,13 @@ class MainFrame(wx.Frame):
         title_label.SetFont(gui_support.font_factory(25, wx.FONTWEIGHT_BOLD))
         title_label.Centre(wx.HORIZONTAL)
 
-        version_label = wx.StaticText(self, label=f"Version {self.constants.patcher_version}{' (Nightly)' if not self.constants.commit_info[0].startswith('refs/tags') else ''}", pos=(-1, title_label.GetPosition()[1] + 32))
+        version_label = wx.StaticText(self, label=f"{self._('Version')} {self.constants.patcher_version}{' (Nightly)' if not self.constants.commit_info[0].startswith('refs/tags') else ''}", pos=(-1, title_label.GetPosition()[1] + 32))
         version_label.SetFont(gui_support.font_factory(13, wx.FONTWEIGHT_NORMAL))
         version_label.Centre(wx.HORIZONTAL)
         version_label.SetForegroundColour(wx.Colour(128, 128, 128))
 
         # Text: Model: {Build or Host Model}
-        model_label = wx.StaticText(self, label=f"Model: {self.constants.custom_model or self.constants.computer.real_model}", pos=(-1, version_label.GetPosition()[1] + 30))
+        model_label = wx.StaticText(self, label=f"{self._('Model:')} {self.constants.custom_model or self.constants.computer.real_model}", pos=(-1, version_label.GetPosition()[1] + 30))
         model_label.SetFont(gui_support.font_factory(13, wx.FONTWEIGHT_NORMAL))
         model_label.Centre(wx.HORIZONTAL)
         self.model_label = model_label
@@ -97,17 +98,17 @@ class MainFrame(wx.Frame):
             "Build and Install OpenCore": {
                 "function": self.on_build_and_install,
                 "description": [
-                    "Prepares provided drive to be able",
-                    "to boot unsupported OSes.",
-                    "Use on installers or internal drives."
+                    self._("Prepares provided drive to be able"),
+                    self._("to boot unsupported OSes."),
+                    self._("Use on installers or internal drives.")
                 ],
                 "icon": str(self.constants.icns_resource_path / "OC-Build.icns"),
             },
             "Create macOS Installer": {
                 "function": self.on_create_macos_installer,
                 "description": [
-                    "Download and flash a macOS",
-                    "Installer for your system.",
+                    self._("Download and flash a macOS"),
+                    self._("Installer for your system."),
                 ],
                 "icon": str(self.constants.icns_resource_path / "OC-Installer.icns"),
             },
@@ -119,9 +120,9 @@ class MainFrame(wx.Frame):
             "Post-Install Root Patch": {
                 "function": self.on_post_install_root_patch,
                 "description": [
-                    "Installs hardware drivers and",
-                    "patches for your system after",
-                    "installing a new version of macOS.",
+                    self._("Installs hardware drivers and"),
+                    self._("patches for your system after"),
+                    self._("installing a new version of macOS."),
                 ],
                 "icon": str(self.constants.icns_resource_path / "OC-Patch.icns"),
             },
@@ -129,8 +130,8 @@ class MainFrame(wx.Frame):
             "Support": {
                 "function": self.on_help,
                 "description": [
-                    "Resources for OpenCore Legacy",
-                    "Patcher.",
+                    self._("Resources for OpenCore Legacy"),
+                    self._("Patcher."),
                 ],
                 "icon": str(self.constants.icns_resource_path / "OC-Support.icns"),
             },
@@ -143,6 +144,7 @@ class MainFrame(wx.Frame):
         index = 0
         max_height = 0
         for button_name, button_function in menu_buttons.items():
+            translated_button_name = self._(button_name)
             # place icon
             if "icon" in button_function:
                 icon = wx.StaticBitmap(self, bitmap=wx.Bitmap(button_function["icon"], wx.BITMAP_TYPE_ICON), pos=(button_x - 10, button_y), size=(64, 64))
@@ -158,7 +160,7 @@ class MainFrame(wx.Frame):
             if button_name == "⚙️ Settings":
                 button_y += 5
 
-            button = wx.Button(self, label=button_name, pos=(button_x + 70, button_y), size=(180, 30))
+            button = wx.Button(self, label=translated_button_name, pos=(button_x + 70, button_y), size=(180, 30))
             button.SetFont(gui_support.font_factory(13, wx.FONTWEIGHT_NORMAL))
             button.Bind(wx.EVT_BUTTON, lambda event, function=button_function["function"]: function(event))
             button_y += 30

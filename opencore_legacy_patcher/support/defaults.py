@@ -72,6 +72,7 @@ class GenerateDefaults:
         self.constants.allow_oc_everywhere = False
         self.constants.sip_status = True
         self.constants.custom_sip_value = None
+        self.constants.language = "Auto"
 
 
         self.constants.fu_arguments = None
@@ -410,8 +411,6 @@ class GenerateDefaults:
         """
         Load GUI defaults from global settings
         """
-        if not self.host_is_target:
-            return
         if self.ignore_settings_file is True:
             return
 
