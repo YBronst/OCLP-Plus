@@ -19,7 +19,7 @@ class Constants:
         self.patcher_name:                    str = "OpenCore Legacy Patcher"
 
         # URLs
-        self.url_patcher_support_pkg:         str = "https://github.com/YBronst/PatcherSupportPkg/releases/latest/Universal-Binaries.dmg"
+        self.url_patcher_support_pkg:         str = "https://github.com/YBronst/PatcherSupportPkg/releases/tag/2.0.0/Universal-Binaries.dmg"
         self.discord_link:                    str = "https://discord.gg/rqdPgH8xSN"
         self.guide_link:                      str = "https://dortania.github.io/OpenCore-Legacy-Patcher/"
         self.kdk_support_pkg_link:            str = "https://github.com/dortania/KdkSupportPkg/releases"
