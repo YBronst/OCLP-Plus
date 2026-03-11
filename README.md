@@ -1,31 +1,18 @@
-# OCLP-YBronst 3.1.6 - Tahoe Patch Set
+# [OCLP-3.1.7 Tahoe Patch Set by YBronst](https://github.com/YBronst/OCLP-YBronst/releases/edit/3.1.7)
+**Based on the lzhoang2801 Tahoe patchset (Dec 24, 2025 state).**
 
-This project continues the Tahoe patch set based on commit `lzhoang2801` from December 24, 2025, and adapts it to the new macOS Tahoe environment.
+## OCLP-YBronst 3.1.7 - Tahoe Patch Set
 
-## Important Compatibility Notice
+### ⚠️ Attention
+* **AMFIPass** cannot be used with OCLP 3.1.7 due to a persistent kernel panic. Instead, use the `amfi=0x80` boot argument.
 
-This repository supports:
-* **macOS Tahoe 26.0 – 26.3**
-* **Support for macOS Tahoe 26.4 and later** will be implemented as soon as possible
-
-> [!IMPORTANT]
-> Starting with macOS 26.4 beta 1, Apple made significant changes to the system update process. The previous Tahoe update process cannot function without modifications in these versions.
-
-### In particular:
-* Previous handling of **HFS-based patch images** is no longer accepted by the OS.
-* Mounting images via [`hdiutil`](https://github.com/YBronst/tccplus) now requires **elevated privileges** and cannot be executed in a normal user context. Because of this, the original OCLP 3.0.0 Nightly workflow cannot complete the root patch installation process on macOS 26.4 without modification.
-
-## Key Changes in 3.1.6
-Added a toggle to the 'Root Patches' sector to enable/disable the 'Modern Audio' patch for AppleHDA restoration. This prevents unrecoverable kernel panics in macOS Tahoe without an installed KDK.
-
-## Key Changes in 3.1.5
-* **Backward compatibility** with macOS Tahoe 26.0–26.3 has been preserved.
-* **Patch image processing** has been migrated to APFS for compatibility with macOS 26.4.
-* **Privileged mount logic** has been added, which is necessary for accessing internal patch images and system resources.
-* **AMFIPass** cannot be used with OCLP 3.1.5 due to a persistent kernel panic. Instead, use `amfi=0x80` boot argument and handling application permissions based on [`tccplus`](https://github.com/YBronst/tccplus).
-
-## Modern Audio (AppleHDA)
-On macOS 26.4 beta 1, installing the Modern Audio patch is temporarily **not recommended** until the corresponding kernel debug kit (KDK) becomes available.
+### 📝 Change log
+* **Dynamic Fallback Mechanism:** When running on macOS Tahoe (XNU 25), the root patching engine now automatically attempts to use resources with the `-24` suffix (Sequoia) if the `-25` directory is missing. 
+* **Compatibility:** Full support for **macOS Tahoe 26.0 (25A5316i)** through **macOS 26.4 (25E5233c)**, with potential support for subsequent 26.x builds.
+* **HFS+ Removal Adaptation:** Apple removed the HFS+ file system in macOS 26.4. This version adapts the patching logic to remain compatible with the now APFS-only system environment.
+* **hdiutil Permissions:** Fixed an issue where macOS 26.4 disallowed mounting via `hdiutil` without root privileges.
+* **Modern Audio Toggle:** Added a toggle to the **Root Patches** menu to enable/disable the 'Modern Audio' patch (AppleHDA restoration). This provides manual control and prevents panics if a matching KDK is not yet installed for future builds.
+* **KDK Support:** A new button in the Help menu allows downloading the latest Kernel Debug Kit.
 
 For systems requiring a fully functional reference environment (including sound) on macOS 26.3 and earlier, I recommend a saved and working patch snapshot from December 24th, available here: [`OCLP-lzhoang2801`](https://github.com/kgp-macPro/OCLP-lzhoang2801)
 
@@ -126,6 +113,8 @@ This is **not an official Dortania release** and is intended for complex Hackint
 * Dortania OCLP team
 * lzhoang2801
 * All PatcherSupportPkg contributors
+
+
 
 **Community discussion:** [InsanelyMac thread](https://www.insanelymac.com/forum/topic/362042-experimental-fork-of-oclp-300-nightly-–-wi-fi-airdropairplay-and-applehda-fully-working-under-tahoe/)
 
