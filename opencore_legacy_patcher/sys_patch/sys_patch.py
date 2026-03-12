@@ -519,6 +519,12 @@ class PatchSysVolume:
                             source_file = source_files_path + "/" + source_file
 
                         if not Path(source_file).exists():
+                            logging.info(f"- Resource file not found: {source_file}")
+                            if Path(source_files_path).exists():
+                                logging.info(f"- Contents of {source_files_path}: {[x.name for x in Path(source_files_path).iterdir()]}")
+                            else:
+                                logging.info(f"- Resource root {source_files_path} DOES NOT exist!")
+
                             # Fallback logic for Tahoe (XNU 25)
                             # If resource for Tahoe is missing, fallback to Sequoia (XNU 24)
                             if self.constants.detected_os == os_data.os_data.tahoe:
@@ -529,7 +535,7 @@ class PatchSysVolume:
                                         fallback_file = source_files_path + "/" + fallback_file
 
                                     if Path(fallback_file).exists():
-                                        logging.info(f"- Resource {source_dir} missing, falling back to {fallback_dir}")
+                                        logging.info(f"- Resource {source_file} missing (exists: {Path(source_file).exists()}), falling back to {fallback_dir}")
                                         required_patches[patch][method_type][install_patch_directory][install_file] = fallback_dir
                                         source_file = fallback_file
 
