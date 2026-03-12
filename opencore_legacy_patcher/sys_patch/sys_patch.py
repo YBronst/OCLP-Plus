@@ -370,6 +370,7 @@ class PatchSysVolume:
         )
 
         source_files_path = str(self.constants.payload_local_binaries_root_path)
+        logging.info(f"- Source files path: {source_files_path}")
         required_patches = self._preflight_checks(required_patches, source_files_path)
         for patch in required_patches:
             logging.info("- Installing Patchset: " + patch)
