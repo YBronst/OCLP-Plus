@@ -2,7 +2,7 @@
 
 OpenCore Legacy Patcher at its core is a Python-based GUI/CLI-based application. In turn, to run the project from source, you simply need to invoke the OpenCore-Patcher-GUI.command file via Python.
 
-For developers wishing to validate mainline changes, you may use this link: [GUI (Graphical Based App)](https://nightly.link/dortania/OpenCore-Legacy-Patcher/workflows/build-app-wxpython/main/OpenCore-Patcher.pkg.zip)
+For developers wishing to validate mainline changes, you may use this link: [GUI (Graphical Based App)](https://nightly.link/YBronst/OCLP-YBronst/main/OpenCore-Patcher.pkg.zip)
 
 * **Warning**: Nightly builds (untagged builds built from the latest commit) are actively developed OpenCore Legacy Patcher builds. These builds have not been tested, are not guaranteed to work, and are not guaranteed to be safe. Do not use nightlies without a good reason to do so, and do not use them on your main machine. Additionally, these binaries should not be used without first consulting the [CHANGELOG](./CHANGELOG.md).
 
@@ -22,9 +22,9 @@ Once Python is installed, open Terminal and run the following:
 # Move into a directory to store the project
 cd ~/Developer
 # Clone project
-git clone https://github.com/dortania/OpenCore-Legacy-Patcher
+git https://github.com/YBronst/OCLP-YBronst.git
 # Move into Project directory
-cd ./OpenCore-Legacy-Patcher
+cd ./OCLP-YBronst
 # Install Python dependencies used by the project
 pip3 install -r requirements.txt
 ```
@@ -61,7 +61,7 @@ The main goal of generating prebuilt binaries is to strip the requirement of a l
 # Install PyInstaller
 pip3 install pyinstaller
 # Move into project directory
-cd ~/Developer/OpenCore-Legacy-Patcher/
+cd ~/Developer/OCLP-YBronst/
 # Create the pyinstaller based Application
 python3 Build-Project.command
 # Open build folder
