@@ -1,6 +1,11 @@
 # OpenCore Legacy Patcher changelog
 
 ## 3.1.7
+Full support for Darwin 25 (macOS Tahoe).
+Added "Modern Audio" toggle for AppleHDA restoration.
+Fixed `hdiutil` mounting permissions for macOS 26.4.
+Migrated internal DMG resources to APFS.
+Improved Help menu with KDK download support.
 Fixed bugs from the previous release.
 
 ## 3.1.6
