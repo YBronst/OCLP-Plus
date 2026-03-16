@@ -36,7 +36,7 @@ Starting with macOS Tahoe Beta 2, Apple removed the legacy `AppleHDA.kext`. This
 *   **SIP Requirements:** System Integrity Protection must be set properly.
 *   **Typical Value:** (CSR_ALLOW_UNTRUSTED_KEXTS | CSR_ALLOW_UNRESTRICTED_FS).
 *   **OpenCore config.plist:** NVRAM > Add > 7C436110-AB2A-4BBB-A880-FE41995C9F82 > csr-active-config <Data> <03080000>.
-*   **Clover config.pli** Set RtVariables > CsrActiveConfig <string> 0x803.
+*   **Clover config.plist:** Set RtVariables > CsrActiveConfig <string> 0x803.
 
 ### ⚒️ [Build and run from source](https://github.com/YBronst/OCLP-YBronst/blob/main/SOURCE.md)
 
