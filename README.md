@@ -33,9 +33,9 @@ Starting with macOS Tahoe Beta 2, Apple removed the legacy `AppleHDA.kext`. This
 *   **Required Boot-Args:** You must use `amfi=0x80` to bypass Apple Mobile File Integrity checks.
 *   **SIP Requirements:** Ensure System Integrity Protection is appropriately configured (typically `CSR_ALLOW_UNTRUSTED_KEXTS | CSR_ALLOW_UNRESTRICTED_FS` or `0x803`).
 
-### [Build and run from source](https://github.com/YBronst/OCLP-YBronst/blob/main/SOURCE.md)
+### ⚒️ [Build and run from source](https://github.com/YBronst/OCLP-YBronst/blob/main/SOURCE.md)
 
-### 🛠️ Installation Requirements
+### 💾 Installation Requirements
 *   **Kernel Debug Kit (KDK):** Required for most root patches on macOS 13+. Use the new **"Download KDK"** button in the Help menu to fetch the latest version.
 *   **Patcher Resources:** This version relies on the [YBronst PatcherSupportPkg](https://github.com/YBronst/PatcherSupportPkg) for native Tahoe binaries.
 
