@@ -7,6 +7,14 @@ Fixed `hdiutil` mounting permissions for macOS 26.4.
 Migrated internal DMG resources to APFS.
 Improved Help menu with KDK download support.
 Fixed bugs from the previous release.
+Rewrite AmfiConfigurationDetection for universal compatibility
+- Remove dependency on OpenCore, NVRAM, and specific boot-args.
+- Implement live kernel state detection via 'sysctl vm.cs_library_validation'.
+- Implement SIP status detection via 'csrutil status'.
+- Update 'check_config' to use live system state for both modern (XNU 20+) and legacy macOS.
+- Update 'HardwarePatchsetDetection' to use the new universal detection logic.
+
+This allows the patcher to work correctly with alternative bootloaders like Clover or custom certificate injections.
 
 ## 3.1.6
 Added a toggle to the 'Root Patches' sector to disable the 'Modern Audio' patch for AppleHDA restoration. This prevents unrecoverable kernel panics in macOS Tahoe without an installed KDK.
