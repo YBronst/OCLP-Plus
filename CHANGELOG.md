@@ -2,20 +2,19 @@
 
 ## 3.1.7
 
-*   **Full Darwin 25 (macOS Tahoe) Support**: Comprehensive compatibility for the latest macOS builds.
-*   **Modern Audio Restoration**: Added a new **"Modern Audio"** toggle to restore `AppleHDA` functionality on legacy systems.
-*   **macOS 26.4 Compatibility Fixes**:
-    *   Resolved `hdiutil` mounting permission issues.
-    *   Migrated all internal DMG resources to **APFS** for native environment support.
-*   **Enhanced Help Menu**: Added direct **KDK (Kernel Debug Kit)** download support for easier driver linking.
-*   **Universal AmfiConfigurationDetection Rewrite**:
-    *   **Bootloader Independence**: Removed hard dependencies on OpenCore, specific NVRAM variables, and static boot-args.
-    *   **Live Kernel Detection**: Implemented real-time state detection via `sysctl vm.cs_library_validation`.
-    *   **Live SIP Detection**: Integrated `csrutil status` for accurate System Integrity Protection checks.
-    *   **Improved Logic**: Updated `check_config` and `HardwarePatchsetDetection` to utilize live system states, ensuring reliable performance across both modern (XNU 20+) and legacy macOS versions.
-    *   **Extended Compatibility**: This allows the patcher to work seamlessly with alternative bootloaders like **Clover** or custom certificate injections.
-*   **Stability**: General bug fixes and performance optimizations from previous releases.
-
+* 🚀 **Full Darwin 25 (macOS Tahoe) Support**: Comprehensive compatibility for the latest macOS builds.
+* 🔊 **Modern Audio Restoration**: Added a new **"Modern Audio"** toggle to restore `AppleHDA` functionality on legacy systems.
+* 🛠️ **macOS 26.4 Compatibility Fixes**:
+    * Resolved `hdiutil` mounting permission issues.
+    * Migrated all internal DMG resources to **APFS** for native environment support.
+* ℹ️ **Enhanced Help Menu**: Added direct **KDK (Kernel Debug Kit)** download support for easier driver linking.
+* 🧬 **Universal AmfiConfigurationDetection Rewrite**:
+    * **Bootloader Independence**: Removed hard dependencies on OpenCore, specific NVRAM variables, and static boot-args.
+    * **Live Kernel Detection**: Implemented real-time state detection via `sysctl vm.cs_library_validation`.
+    * **Live SIP Detection**: Integrated `csrutil status` for accurate System Integrity Protection checks.
+    * **Improved Logic**: Updated `check_config` and `HardwarePatchsetDetection` to utilize live system states, ensuring reliable performance across both modern (XNU 20+) and legacy macOS versions.
+    * **Extended Compatibility**: This allows the patcher to work seamlessly with alternative bootloaders like **Clover** or custom certificate injections.
+* 🛡️ **Stability**: General bug fixes and performance optimizations from previous releases.
 
 ## 3.1.6
 Added a toggle to the 'Root Patches' sector to disable the 'Modern Audio' patch for AppleHDA restoration. This prevents unrecoverable kernel panics in macOS Tahoe without an installed KDK.
