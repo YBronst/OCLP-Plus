@@ -1,15 +1,9 @@
 <div align="center">
 <img src="https://github.com/YBronst/OCLP-Plus/blob/main/docs/images/OC-Patcher.png"  alt="OC-Patcher Logo" width="256" />
 
----
-
-<div align="center">
-
 # [OCLP-Plus Tahoe Patch Set](https://github.com/YBronst/OCLP-Plus/releases)
-
 **Based on the lzhoang2801 Tahoe patchset and optimized for macOS 26.x builds.**
-
----
+</div>
 
 ## 🌟 Key Features
 
@@ -32,8 +26,6 @@ Starting with macOS Tahoe Beta 2, Apple removed the legacy `AppleHDA.kext`. This
 >   **Elevated hdiutil Permissions:** Fixed a critical issue where macOS 26.4 disallowed mounting disk images without root privileges.
 >
 > The patcher now correctly escalates via the Privileged Helper Tool.
-
----
 
 ## ⚠️ Important Technical Notes
 
@@ -65,11 +57,7 @@ Starting with macOS Tahoe Beta 2, Apple removed the legacy `AppleHDA.kext`. This
 > **Important:** Please be aware that if this resource becomes unavailable for any reason (e.g., server downtime or repository removal),
 > the OCLP-3.1.7 Tahoe Patch Set will lose its ability to fetch the necessary binaries, and root patching will fail.
 
----
-
 ## 📝 [Change Log](https://github.com/YBronst/OCLP-Plus/blob/main/CHANGELOG.md)
-
----
 
 ## 📜 Credits
 
@@ -78,8 +66,6 @@ Starting with macOS Tahoe Beta 2, Apple removed the legacy `AppleHDA.kext`. This
 *   [lzhoang2801](https://github.com/kgp-macPro/OCLP-lzhoang2801) (Original Tahoe patchset)
 *   [YBronst](https://github.com/YBronst) (Fork maintainer and Tahoe optimizations)
 *   *Full list of OCLP contributors can be found in the [original repository](https://github.com/dortania/OpenCore-Legacy-Patcher).*
-
----
 
 ## ⚖️ Disclaimer
 This is an **experimental fork** intended for advanced users and complex Hackintosh/Legacy Mac configurations. Use at your own risk.
