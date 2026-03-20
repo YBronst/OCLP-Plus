@@ -1,4 +1,4 @@
-# <img src="https://github.com/YBronst/OCLP-YBronst/blob/main/docs/images/OC-Patcher.png" width="48" align="center"> [OCLP-3.1.7 Tahoe Patch Set by YBronst](https://github.com/YBronst/OCLP-YBronst/releases)
+# <img src="https://github.com/YBronst/OCLP-Plus/blob/main/docs/images/OC-Patcher.png" width="48" align="center"> [OCLP-Plus 3.1.7 Tahoe Patch Set](https://github.com/YBronst/OCLP-Plus/releases)
 
 **Based on the lzhoang2801 Tahoe patchset and optimized for macOS 26.x builds.**
 
@@ -48,7 +48,7 @@ Starting with macOS Tahoe Beta 2, Apple removed the legacy `AppleHDA.kext`. This
 > OpenCore: Select "Reset NVRAM" from the boot picker menu (or press Space if it's hidden).
 > Clover: Press F11 at the boot screen to clear NVRAM and restart.
 
-### ⚒️ [Build and run from source](https://github.com/YBronst/OCLP-YBronst/blob/main/SOURCE.md)
+### ⚒️ [Build and run from source](https://github.com/YBronst/OCLP-Plus/blob/main/SOURCE.md)
 
 ### 💾 Installation Requirements
 💡  **Before Running Post-Install Patches:**
@@ -60,7 +60,7 @@ Starting with macOS Tahoe Beta 2, Apple removed the legacy `AppleHDA.kext`. This
 
 ---
 
-## 📝 [Change Log](https://github.com/YBronst/OCLP-YBronst/blob/main/CHANGELOG.md)
+## 📝 [Change Log](https://github.com/YBronst/OCLP-Plus/blob/main/CHANGELOG.md)
 
 ---
 
