@@ -14,6 +14,11 @@
     * **Live SIP Detection**: Integrated `csrutil status` for accurate System Integrity Protection checks.
     * **Improved Logic**: Updated `check_config` and `HardwarePatchsetDetection` to utilize live system states, ensuring reliable performance across both modern (XNU 20+) and legacy macOS versions.
     * **Extended Compatibility**: This allows the patcher to work seamlessly with alternative bootloaders like **Clover** or custom certificate injections.
+    * ** Move JavaScriptCore patch** for pre-AVX Macs to RestrictEvents
+    * ** OpenCorePkg 1.0.7** - release
+    * ** Lilu 1.7.1** - release
+    * ** RestrictEvents 1.1.7 - (rolling - b70aaa4)
+    * ** PatcherSupportPkg 2.0.0** - release
 * 🛡️ **Stability**: General bug fixes and performance optimizations from previous releases.
 
 ## 3.1.6
