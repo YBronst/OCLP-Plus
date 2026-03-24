@@ -23,9 +23,9 @@ class Constants:
         self.discord_link:                    str = "https://discord.gg/rqdPgH8xSN"
         self.guide_link:                      str = "https://dortania.github.io/OpenCore-Legacy-Patcher/"
         self.kdk_support_pkg_link:            str = "https://github.com/dortania/KdkSupportPkg/releases"
-        self.repo_link:                       str = "https://github.com/YBronst/OpenCore-Legacy-Patcher"
+        self.repo_link:                       str = "https://github.com/YBronst/OCLP-Plus"
         self.installer_pkg_url:               str = f"{self.repo_link}/releases/download/{self.patcher_version}/AutoPkg-Assets.pkg"
-        self.installer_pkg_url_nightly:       str = "http://nightly.link/YBronst/OpenCore-Legacy-Patcher/workflows/build-app-wxpython/main/AutoPkg-Assets.pkg.zip"
+        self.installer_pkg_url_nightly:       str = "http://nightly.link/YBronst/OCLP-Plus/workflows/build-app-wxpython/main/AutoPkg-Assets.pkg.zip"
 
         # OpenCore Versioning
         # https://github.com/acidanthera/OpenCorePkg

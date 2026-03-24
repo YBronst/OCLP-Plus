@@ -15,7 +15,7 @@ from . import network_handler
 from .. import constants
 
 
-REPO_LATEST_RELEASE_URL: str = "https://api.github.com/repos/YBronst/OpenCore-Legacy-Patcher/releases/latest"
+REPO_LATEST_RELEASE_URL: str = "https://api.github.com/repos/YBronst/OCLP-Plus/releases/latest"
 
 
 class CheckBinaryUpdates:
@@ -116,12 +116,12 @@ class CheckBinaryUpdates:
 
         for asset in data_set["assets"]:
             logging.info(f"Found asset: {asset['name']}")
-            if asset["name"] == "OpenCore-Patcher.pkg":
+            if asset["name"] == "OCLP-Plus.pkg":
                 self.latest_details = {
                     "Name": asset["name"],
                     "Version": latest_remote_version,
                     "Link": asset["browser_download_url"],
-                    "Github Link": f"https://github.com/YBronst/OpenCore-Legacy-Patcher/releases/{latest_remote_version}",
+                    "Github Link": f"https://github.com/YBronst/OCLP-Plus/releases/{latest_remote_version}",
                 }
                 return self.latest_details
 

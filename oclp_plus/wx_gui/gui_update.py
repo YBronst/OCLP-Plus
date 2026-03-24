@@ -42,7 +42,7 @@ class UpdateFrame(wx.Frame):
 
         self.title: str = title
         self.constants: constants.Constants = global_constants
-        self.pkg_download_path = self.constants.payload_path / "OpenCore-Patcher.pkg"
+        self.pkg_download_path = self.constants.payload_path / "OCLP-Plus.pkg"
         self.screen_location: wx.Point = screen_location
         if parent:
             self.parent.Centre()
@@ -97,7 +97,7 @@ class UpdateFrame(wx.Frame):
         download_obj = None
         def _fetch_update() -> None:
             nonlocal download_obj
-            file_name = "OpenCore-Patcher.pkg.zip" if url.endswith(".zip") else "OpenCore-Patcher.pkg"
+            file_name = "OCLP-Plus.pkg.zip" if url.endswith(".zip") else "OCLP-Plus.pkg"
             download_obj = network_handler.DownloadObject(url, self.constants.payload_path / file_name)
 
         thread = threading.Thread(target=_fetch_update)
@@ -109,7 +109,7 @@ class UpdateFrame(wx.Frame):
             title=self.title,
             global_constants=self.constants,
             download_obj=download_obj,
-            item_name=f"OpenCore Patcher {version_label}",
+            item_name=f"OCLP-Plus {version_label}",
             download_icon=str(self.constants.app_icon_path)
         )
 
@@ -199,7 +199,7 @@ class UpdateFrame(wx.Frame):
             subprocess.run(["/bin/rm", "-rf", str(self.pkg_download_path)])
 
         result = subprocess.run(
-            ["/usr/bin/ditto", "-xk", str(self.constants.payload_path / "OpenCore-Patcher.pkg.zip"), str(self.constants.payload_path)], capture_output=True
+            ["/usr/bin/ditto", "-xk", str(self.constants.payload_path / "OCLP-Plus.pkg.zip"), str(self.constants.payload_path)], capture_output=True
         )
         if result.returncode != 0:
             logging.error(f"Failed to extract update.")
@@ -230,7 +230,7 @@ class UpdateFrame(wx.Frame):
                 logging.error("Failed to install update, attempting to open PKG")
                 subprocess.run(["/usr/bin/open", str(self.pkg_download_path)])
 
-                wx.CallAfter(wx.MessageBox, f"Failed to install update. Please try installing the OpenCore-Patcher.pkg manually or download from GitHub", "Critical Error!", wx.OK | wx.ICON_ERROR)
+                wx.CallAfter(wx.MessageBox, f"Failed to install update. Please try installing the OCLP-Plus.pkg manually or download from GitHub", "Critical Error!", wx.OK | wx.ICON_ERROR)
             wx.CallAfter(sys.exit, 1)
 
 
