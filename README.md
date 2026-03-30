@@ -28,7 +28,7 @@ Starting with macOS Tahoe Beta 2, Apple removed the legacy `AppleHDA.kext`. This
 > The patcher now correctly escalates via the Privileged Helper Tool.
 
 ## ⚠️ Important Technical Notes
-*  **Graphics patches for Deprecated accelerators** in Tahoe are officially impossible. **Use Sequoia** for full acceleration.
+*  **Graphics patches for Deprecated accelerators in Tahoe are officially impossible. Use Sequoia for full acceleration.**
 
 ### 🔑 AMFI & Security
 
