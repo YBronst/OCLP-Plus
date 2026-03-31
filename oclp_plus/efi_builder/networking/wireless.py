@@ -147,6 +147,13 @@ class BuildWirelessNetworking:
         Simply adding the Device IDs and usage of AirPortBrcmFixup will restore full functionality
         """
 
+        # bcrm4360 requires dart=0 in bootargs
+        nvram_guid = "7C436110-AB2A-4BBB-A880-FE41995C9F82"
+        self.config.setdefault("NVRAM", {}).setdefault("Add", {}).setdefault(nvram_guid, {}).setdefault("boot-args", "")
+        boot_args = self.config["NVRAM"]["Add"][nvram_guid]["boot-args"]
+        if "dart=0" not in boot_args.split():
+            self.config["NVRAM"]["Add"][nvram_guid]["boot-args"] = (boot_args + " dart=0").strip()
+
         support.BuildSupport(self.model, self.constants, self.config).enable_kext("AirportBrcmFixup.kext", self.constants.airportbcrmfixup_version, self.constants.airportbcrmfixup_path)
         support.BuildSupport(self.model, self.constants, self.config).get_kext_by_bundle_path("AirportBrcmFixup.kext/Contents/PlugIns/AirPortBrcmNIC_Injector.kext")["Enabled"] = True
         if not self.constants.custom_model and self.computer.wifi and self.computer.wifi.pci_path:
