@@ -123,7 +123,7 @@ class HardwarePatchsetDetection:
             #amd_terascale_1.AMDTeraScale1,
             #amd_terascale_2.AMDTeraScale2,
             #amd_legacy_gcn.AMDLegacyGCN,
-            amd_polaris.AMDPolaris,
+            #amd_polaris.AMDPolaris,
             #amd_vega.AMDVega,
 
             #legacy_wireless.LegacyWireless,
