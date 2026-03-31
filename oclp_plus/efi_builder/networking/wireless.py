@@ -97,6 +97,7 @@ class BuildWirelessNetworking:
         if smbios_data.smbios_dictionary[self.model]["Wireless Model"] == device_probe.Broadcom.Chipsets.AirPortBrcm4360:
             logging.info("- Enabling BCM943224 and BCM94331 Networking Support")
             self._wifi_fake_id()
+            self.brcm4360_nvram()
         elif smbios_data.smbios_dictionary[self.model]["Wireless Model"] == device_probe.Broadcom.Chipsets.AirPortBrcm4331:
             logging.info("- Enabling BCM94328 Networking Support")
             support.BuildSupport(self.model, self.constants, self.config).enable_kext("corecaptureElCap.kext", self.constants.corecaptureelcap_version, self.constants.corecaptureelcap_path)
@@ -120,6 +121,7 @@ class BuildWirelessNetworking:
             support.BuildSupport(self.model, self.constants, self.config).enable_kext("IO80211FamilyLegacy.kext", self.constants.io80211legacy_version, self.constants.io80211legacy_path)
             support.BuildSupport(self.model, self.constants, self.config).get_kext_by_bundle_path("IO80211FamilyLegacy.kext/Contents/PlugIns/AirPortBrcmNIC.kext")["Enabled"] = True
             support.BuildSupport(self.model, self.constants, self.config).get_item_by_kv(self.config["Kernel"]["Block"], "Identifier", "com.apple.iokit.IOSkywalkFamily")["Enabled"] = True
+            self.brcm4360_nvram()
 
 
     def _wowl_handling(self) -> None:
@@ -138,6 +140,12 @@ class BuildWirelessNetworking:
         logging.info("- Enabling Wake on WLAN support")
         self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"] += f" -brcmfxwowl"
 
+    def brcm4360_nvram(self) -> None:
+        # brcm4360 requires dart=0 in bootargs
+        self.config.setdefault("NVRAM", {}).setdefault("Add", {}).setdefault("7C436110-AB2A-4BBB-A880-FE41995C9F82", {}).setdefault("boot-args", "")
+        boot_args = self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"]
+        if "dart=0" not in boot_args.split():
+            self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"] = (boot_args + " dart=0").strip()
 
     def _wifi_fake_id(self) -> None:
         """
@@ -146,13 +154,6 @@ class BuildWirelessNetworking:
         BCM94331 and BCM943224 are both partially supported within Big Sur's native AirPortBrcmNIC stack
         Simply adding the Device IDs and usage of AirPortBrcmFixup will restore full functionality
         """
-
-        # bcrm4360 requires dart=0 in bootargs
-        nvram_guid = "7C436110-AB2A-4BBB-A880-FE41995C9F82"
-        self.config.setdefault("NVRAM", {}).setdefault("Add", {}).setdefault(nvram_guid, {}).setdefault("boot-args", "")
-        boot_args = self.config["NVRAM"]["Add"][nvram_guid]["boot-args"]
-        if "dart=0" not in boot_args.split():
-            self.config["NVRAM"]["Add"][nvram_guid]["boot-args"] = (boot_args + " dart=0").strip()
 
         support.BuildSupport(self.model, self.constants, self.config).enable_kext("AirportBrcmFixup.kext", self.constants.airportbcrmfixup_version, self.constants.airportbcrmfixup_path)
         support.BuildSupport(self.model, self.constants, self.config).get_kext_by_bundle_path("AirportBrcmFixup.kext/Contents/PlugIns/AirPortBrcmNIC_Injector.kext")["Enabled"] = True
