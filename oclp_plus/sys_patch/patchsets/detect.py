@@ -109,35 +109,36 @@ class HardwarePatchsetDetection:
         self._validation = validation
 
         self._hardware_variants = [
-            intel_iron_lake.IntelIronLake,
-            intel_sandy_bridge.IntelSandyBridge,
-            intel_ivy_bridge.IntelIvyBridge,
-            intel_haswell.IntelHaswell,
-            intel_broadwell.IntelBroadwell,
-            intel_skylake.IntelSkylake,
+            #intel_iron_lake.IntelIronLake,
+            #intel_sandy_bridge.IntelSandyBridge,
+            #intel_ivy_bridge.IntelIvyBridge,
+            #intel_haswell.IntelHaswell,
+            #intel_broadwell.IntelBroadwell,
+            #intel_skylake.IntelSkylake,
 
-            nvidia_tesla.NvidiaTesla,
-            nvidia_kepler.NvidiaKepler,
-            nvidia_webdriver.NvidiaWebDriver,
+            #nvidia_tesla.NvidiaTesla,
+            #nvidia_kepler.NvidiaKepler,
+            #nvidia_webdriver.NvidiaWebDriver,
 
-            amd_terascale_1.AMDTeraScale1,
-            amd_terascale_2.AMDTeraScale2,
-            amd_legacy_gcn.AMDLegacyGCN,
-            amd_polaris.AMDPolaris,
-            amd_vega.AMDVega,
+            #amd_terascale_1.AMDTeraScale1,
+            #amd_terascale_2.AMDTeraScale2,
+            #amd_legacy_gcn.AMDLegacyGCN,
+            #amd_polaris.AMDPolaris,
+            #amd_vega.AMDVega,
 
-            legacy_wireless.LegacyWireless,
+            #legacy_wireless.LegacyWireless,
             modern_wireless.ModernWireless,
 
-            legacy_audio.LegacyAudio,
+            #legacy_audio.LegacyAudio,
             modern_audio.ModernAudio,
 
-            display_backlight.DisplayBacklight,
-            gmux.GraphicsMultiplexer,
-            keyboard_backlight.KeyboardBacklight,
-            pcie_webcam.PCIeFaceTimeCamera,
-            t1_security.T1SecurityChip,
-            usb11.USB11Controller,
+            #display_backlight.DisplayBacklight,
+            #gmux.GraphicsMultiplexer,
+            #keyboard_backlight.KeyboardBacklight,
+            #pcie_webcam.PCIeFaceTimeCamera,
+            #t1_security.T1SecurityChip,
+            #usb11.USB11Controller,
+            #cpu_missing_avx.CPUMissingAVX,
         ]
 
         self.device_properties = None
