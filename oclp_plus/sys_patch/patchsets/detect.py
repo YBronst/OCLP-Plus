@@ -108,38 +108,47 @@ class HardwarePatchsetDetection:
         self._os_version = os_version or self._constants.detected_os_version
         self._validation = validation
 
-        self._hardware_variants = [
-            #intel_iron_lake.IntelIronLake,
-            #intel_sandy_bridge.IntelSandyBridge,
-            #intel_ivy_bridge.IntelIvyBridge,
-            #intel_haswell.IntelHaswell,
-            #intel_broadwell.IntelBroadwell,
-            #intel_skylake.IntelSkylake,
+        self._hardware_variants = []
 
-            #nvidia_tesla.NvidiaTesla,
-            #nvidia_kepler.NvidiaKepler,
-            #nvidia_webdriver.NvidiaWebDriver,
+        if self._xnu_major < os_data.tahoe.value:
+            self._hardware_variants += [
+                intel_iron_lake.IntelIronLake,
+                intel_sandy_bridge.IntelSandyBridge,
+                intel_ivy_bridge.IntelIvyBridge,
+                intel_haswell.IntelHaswell,
+                intel_broadwell.IntelBroadwell,
+                intel_skylake.IntelSkylake,
 
-            #amd_terascale_1.AMDTeraScale1,
-            #amd_terascale_2.AMDTeraScale2,
-            #amd_legacy_gcn.AMDLegacyGCN,
-            #amd_polaris.AMDPolaris,
-            #amd_vega.AMDVega,
+                nvidia_tesla.NvidiaTesla,
+                nvidia_kepler.NvidiaKepler,
+                nvidia_webdriver.NvidiaWebDriver,
 
-            #legacy_wireless.LegacyWireless,
-            modern_wireless.ModernWireless,
+                amd_terascale_1.AMDTeraScale1,
+                amd_terascale_2.AMDTeraScale2,
+                amd_legacy_gcn.AMDLegacyGCN,
+                amd_polaris.AMDPolaris,
+                amd_vega.AMDVega,
 
-            #legacy_audio.LegacyAudio,
-            modern_audio.ModernAudio,
+                legacy_wireless.LegacyWireless,
+            ]
 
-            #display_backlight.DisplayBacklight,
-            #gmux.GraphicsMultiplexer,
-            #keyboard_backlight.KeyboardBacklight,
-            #pcie_webcam.PCIeFaceTimeCamera,
-            #t1_security.T1SecurityChip,
-            #usb11.USB11Controller,
-            #cpu_missing_avx.CPUMissingAVX,
-        ]
+        self._hardware_variants.append(modern_wireless.ModernWireless)
+
+        if self._xnu_major < os_data.tahoe.value:
+            self._hardware_variants.append(legacy_audio.LegacyAudio)
+
+        self._hardware_variants.append(modern_audio.ModernAudio)
+
+        if self._xnu_major < os_data.tahoe.value:
+            self._hardware_variants += [
+                display_backlight.DisplayBacklight,
+                gmux.GraphicsMultiplexer,
+                keyboard_backlight.KeyboardBacklight,
+                pcie_webcam.PCIeFaceTimeCamera,
+                t1_security.T1SecurityChip,
+                usb11.USB11Controller,
+                cpu_missing_avx.CPUMissingAVX,
+            ]
 
         self.device_properties = None
         self.patches           = None
