@@ -57,7 +57,7 @@ Starting with macOS Tahoe Beta 2, Apple removed the legacy `AppleHDA.kext`. This
 ⚠️ **Resource Dependency Notice**
 * **Patcher Resources:** This version relies on the [`PatcherSupportPkg`](https://github.com/YBronst/PatcherSupportPkg) for native Tahoe binaries.
 > **Important:** Please be aware that if this resource becomes unavailable for any reason (e.g., server downtime or repository removal),
-> the OCLP-3.1.8 Tahoe Patch Set will lose its ability to fetch the necessary binaries, and root patching will fail.
+> the OCLP-3.1.9 Tahoe Patch Set will lose its ability to fetch the necessary binaries, and root patching will fail.
 
 ## 📝 [`Change Log`](https://github.com/YBronst/OCLP-Plus/blob/main/CHANGELOG.md)
 
