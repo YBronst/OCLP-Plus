@@ -114,22 +114,26 @@ class LegacyWireless(BaseHardware):
         if self._xnu_major < os_data.ventura:
             return {}
 
+        legacy_wireless_source = f"12.7.2-{self._xnu_major}"
+        if self._xnu_major == os_data.tahoe.value:
+            legacy_wireless_source = "12.7.2-24"
+
         return {
             "Legacy Wireless Extended": {
                 PatchType.OVERWRITE_SYSTEM_VOLUME: {
                     "/usr/libexec": {
-                        "wps":      "12.7.2" if self._xnu_major < os_data.sequoia else f"12.7.2-{self._xnu_major}",
-                        "wifip2pd": "12.7.2" if self._xnu_major < os_data.sequoia else f"12.7.2-{self._xnu_major}",
+                        "wps":      "12.7.2" if self._xnu_major < os_data.sequoia else legacy_wireless_source,
+                        "wifip2pd": "12.7.2" if self._xnu_major < os_data.sequoia else legacy_wireless_source,
                     },
                 },
                 PatchType.MERGE_SYSTEM_VOLUME: {
                     "/System/Library/Frameworks": {
-                        "CoreWLAN.framework": "12.7.2" if self._xnu_major < os_data.sequoia else f"12.7.2-{self._xnu_major}",
+                        "CoreWLAN.framework": "12.7.2" if self._xnu_major < os_data.sequoia else legacy_wireless_source,
                     },
                     "/System/Library/PrivateFrameworks": {
-                        "CoreWiFi.framework":       "12.7.2" if self._xnu_major < os_data.sequoia else f"12.7.2-{self._xnu_major}",
-                        "IO80211.framework":        "12.7.2" if self._xnu_major < os_data.sequoia else f"12.7.2-{self._xnu_major}",
-                        "WiFiPeerToPeer.framework": "12.7.2" if self._xnu_major < os_data.sequoia else f"12.7.2-{self._xnu_major}",
+                        "CoreWiFi.framework":       "12.7.2" if self._xnu_major < os_data.sequoia else legacy_wireless_source,
+                        "IO80211.framework":        "12.7.2" if self._xnu_major < os_data.sequoia else legacy_wireless_source,
+                        "WiFiPeerToPeer.framework": "12.7.2" if self._xnu_major < os_data.sequoia else legacy_wireless_source,
                     },
                 }
             },
