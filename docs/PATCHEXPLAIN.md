@@ -139,7 +139,7 @@ Below is a rundown of the main logic that OpenCore Legacy Patcher uses to gain n
   * Reason: Enables Content Caching when using VMM spoofing
   * Logic: Adds args to NVRAM
   * Models: Any model using VMM spoofing
-* `amfi=0x80`
+* `-amfipassbeta`
   * Reason: Disables Apple Mobile File Integrity to allow for root patches
   * Logic: Adds args to NVRAM
   * Models: Any model that requires unsigned root patches

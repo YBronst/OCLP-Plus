@@ -32,7 +32,7 @@ This review focuses on the changes introduced in the YBronst fork to support mac
 ## Suggested Improvements
 1. **AirDrop on Tahoe:** Re-evaluate the `_xnu_major > os_data.sonoma` check in `modern_wireless.py`. If the frameworks from 13.7.2 are still compatible with Tahoe's private frameworks, they should be enabled to restore full AirDrop functionality.
 2. **Localization:** While the primary language is English, ensure that new strings (like the Modern Audio toggle) are added to the translation files to avoid "Missing String" errors in the GUI for other locales.
-3. **AMFI Documentation:** Since `AMFIPass` causes kernel panics on this version, it's critical to emphasize the use of `amfi=0x80` in all documentation.
+3. **AMFI Documentation:** Use `-amfipassbeta` for AMFI bypass with AMFIPass.kext.
 
 ## Conclusion
 The fork successfully implements the necessary "stop-gap" measures for Tahoe support. The most significant achievement is the restoration of AppleHDA and the fix for `hdiutil` permissions. Addressing the AirDrop patch logic for XNU 25 would be the next logical step for feature parity.

@@ -42,8 +42,9 @@ class BuildSecurity:
         if self.constants.sip_status is False or self.constants.custom_sip_value:
             # Work-around 12.3 bug where Electron apps no longer launch with SIP lowered
             # Unknown whether this is intended behavior or not, revisit with 12.4
-            logging.info("- Adding ipc_control_port_options=0 to boot-args")
-            self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"] += " ipc_control_port_options=0"
+            if "-amfipassbeta" not in self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"]:
+                logging.info("- Adding -amfipassbeta to boot-args")
+                self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"] += " -amfipassbeta"
             # Adds AutoPkgInstaller for Automatic OCLP-Plus installation
             # Only install if running the GUI (AutoPkg-Assets.pkg requires the GUI)
             if self.constants.wxpython_variant is True:
@@ -74,7 +75,8 @@ class BuildSecurity:
             # Before merging into mainline, this needs to be resolved
             if self.constants.disable_amfi is True:
                 logging.info("- Disabling AMFI")
-                self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"] += " amfi=0x80"
+                if "-amfipassbeta" not in self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"]:
+                    self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"] += " -amfipassbeta"
             else:
                 logging.info("- Disabling Library Validation")
             support.BuildSupport(self.model, self.constants, self.config).get_item_by_kv(self.config["Kernel"]["Patch"], "Comment", "Disable Library Validation Enforcement")["Enabled"] = True
