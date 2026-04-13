@@ -10,7 +10,7 @@
 	<string>com.dortania.opencore-legacy-patcher.macos-update</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/Library/Application Support/Dortania/OCLP-Plus.app/Contents/MacOS/OpenCore-Patcher</string>
+		<string>/Library/Application Support/Dortania/OCLP-Plus.app/Contents/MacOS/OCLP-Plus</string>
 		<string>--prepare_for_update</string>
 	</array>
 	<key>WatchPaths</key>
