@@ -16,6 +16,9 @@ Restores full functionality for Broadcom-based wireless chipsets (BCM4360 and si
 *  **AirDrop & Handoff:** Fully synchronized frameworks to ensure seamless file sharing and continuity features between devices.
 *  **AirPlay:** Restored support for streaming to and from your Mac.
 
+### 🚫 Intel Wi-Fi (AirportItlwm) is NOT supported 
+*  **This fork is exclusively optimized for Broadcom-based wireless chipsets.** If you require Intel Wi-Fi patches for Tahoe, please use [OCLP-Mod](https://github.com/laobamac/OCLP-Mod).
+
 ### 🔊 Modern Audio (AppleHDA Restoration)
 Starting with macOS Tahoe Beta 2, Apple removed the legacy `AppleHDA.kext`. This patch set brings it back, ensuring built-in audio works on supported legacy systems.
 *  **Manual Toggle:** A new "Modern Audio" toggle in the Root Patches menu allows you to enable or disable this restoration manually.
