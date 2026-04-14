@@ -1,10 +1,14 @@
 # OCLP-Plus changelog
 ## 3.1.9
 
-- Enabled Legacy patches (Intel/Nvidia/AMD) for macOS 15.x and earlier
-- Disabled Legacy patches for Tahoe26.x to prevent failures when applying root patches.
+- Includes legacy patches for macOS versions earlier than 15.x.
+- Disabled Legacy patches for Tahoe 26.x to prevent failures when applying root patches.
 - Enabled ModernWireless/Audio for all versions (including Tahoe).
 - The method for detecting the conditions of applying patches has been updated.
+- OpenCorePkg 1.0.7 - release
+  - Lilu 1.7.2 - release
+  - RestrictEvents 1.1.7 - release
+  - PatcherSupportPkg 2.0.0 - release
 
 ## 2.4.1
 - Switch installer source to AppleDB
