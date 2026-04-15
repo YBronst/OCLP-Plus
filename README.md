@@ -20,7 +20,7 @@
 
 ### 📶 Wireless & Continuity Restoration
 Restores full functionality for Broadcom-based wireless chipsets (BCM4360 and similar):
-* **AWDL, Airdrop, AirPlay and Screen Mirroring** work under Tahoe 26.x.
+* **AWDL**, work under Tahoe 26.x.
 
     *  **Wi-Fi:** Stable connectivity on 2.4GHz and 5GHz bands.
     *  **AirDrop & Handoff:** Fully synchronized frameworks to ensure seamless file sharing and Apple continuity features.
