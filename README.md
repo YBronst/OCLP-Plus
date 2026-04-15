@@ -11,18 +11,20 @@
 
 * **Modern** root patching support for macOS Tahoe 26.0 (25A5316i) through macOS 26.4.1 (25E253) and beyond.
 * **Supported Mac Models (SMBIOS)**: For macOS Tahoe, this patch set is designed for the following **native** or **spoofed** models:
+
     * **iMac**: `iMac20,1`, `iMac20,2`
     * **MacBook Pro**: `MacBookPro16,1`, `MacBookPro16,2`, `MacBookPro16,4`
     * **Mac Pro**: `MacPro7,1`
 * **Legacy** root patching support for macOS Sequoia 15.7.5 (24G624) and earlier, as in OpenCore Legacy Patcher 2.4.1.
 * **Note**: For macOS Sequoia and earlier, compatibility and SMBIOS requirements follow the standard limits of each respective operating system.
 
-
 ### 📶 Wireless & Continuity Restoration
 Restores full functionality for Broadcom-based wireless chipsets (BCM4360 and similar):
-*  **Wi-Fi:** Stable connectivity on 2.4GHz and 5GHz bands.
-*  **AirDrop & Handoff:** Fully synchronized frameworks to ensure seamless file sharing and Apple continuity features.
-*  **AirPlay:** Restored support for streaming to and from your Mac.
+* **AWDL, Airdrop, AirPlay and Screen Mirroring** work under Tahoe 26.x.
+
+    *  **Wi-Fi:** Stable connectivity on 2.4GHz and 5GHz bands.
+    *  **AirDrop & Handoff:** Fully synchronized frameworks to ensure seamless file sharing and Apple continuity features.
+    *  **AirPlay:** Restored support for streaming to and from your Mac.
 
 ### 🚫 Intel Wi-Fi (AirportItlwm) is NOT supported 
 *  **This fork is exclusively optimized for Broadcom-based wireless chipsets.** If you require Intel Wi-Fi patches for Tahoe, please use [OCLP-Mod](https://github.com/laobamac/OCLP-Mod).
