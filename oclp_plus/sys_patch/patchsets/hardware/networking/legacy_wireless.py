@@ -87,14 +87,12 @@ class LegacyWireless(BaseHardware):
         """
         Base patches for Legacy Wireless
         """
-        daemons = {}
-        if self._xnu_major < 25:
-            daemons["airportd"] = "11.7.10" if self._affected_by_cve_2024_23227 is False else "11.7.10-Sandbox"
-
         return {
             "Legacy Wireless": {
                 PatchType.OVERWRITE_SYSTEM_VOLUME: {
-                    "/usr/libexec": daemons,
+                    "/usr/libexec": {
+                        "airportd": "11.7.10" if self._affected_by_cve_2024_23227 is False else "11.7.10-Sandbox",
+                    },
                     "/System/Library/CoreServices": {
                         "WiFiAgent.app": "11.7.10",
                     },
@@ -116,17 +114,13 @@ class LegacyWireless(BaseHardware):
         if self._xnu_major < os_data.ventura:
             return {}
 
-        daemons = {
-            "wps":      "12.7.2" if self._xnu_major < os_data.sequoia else f"12.7.2-{self._xnu_major}",
-            "wifip2pd": "12.7.2" if self._xnu_major < os_data.sequoia else f"12.7.2-{self._xnu_major}",
-        }
-        if self._xnu_major < 25:
-            daemons["airportd"] = "12.7.2" if self._xnu_major < os_data.sequoia else f"12.7.2-{self._xnu_major}"
-
         return {
             "Legacy Wireless Extended": {
                 PatchType.OVERWRITE_SYSTEM_VOLUME: {
-                    "/usr/libexec": daemons,
+                    "/usr/libexec": {
+                        "wps":      "12.7.2" if self._xnu_major < os_data.sequoia else f"12.7.2-{self._xnu_major}",
+                        "wifip2pd": "12.7.2" if self._xnu_major < os_data.sequoia else f"12.7.2-{self._xnu_major}",
+                    },
                 },
                 PatchType.MERGE_SYSTEM_VOLUME: {
                     "/System/Library/Frameworks": {
