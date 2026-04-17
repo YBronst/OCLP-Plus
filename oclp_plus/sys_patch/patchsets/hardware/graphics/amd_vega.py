@@ -32,13 +32,16 @@ class AMDVega(BaseHardware):
 
     def present(self) -> bool:
         """
-        Targeting AMD Vega GPUs with CPUs lacking AVX2.0
+        Targeting AMD Vega GPUs
+        Note: Previously required CPUs lacking AVX2.0, but the iMac Pro (2017)
+        has a Skylake Xeon WITH AVX2 and still needs Vega patches on Tahoe
+        since Apple dropped Vega support based on GPU architecture, not CPU.
         """
         return self._is_gpu_architecture_present(
             gpu_architectures=[
                 device_probe.AMD.Archs.Vega
             ]
-        ) and "AVX2" not in self._computer.cpu.leafs
+        )
 
 
     def native_os(self) -> bool:

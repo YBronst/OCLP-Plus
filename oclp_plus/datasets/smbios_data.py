@@ -2693,7 +2693,7 @@ smbios_dictionary = {
         "FirmwareFeatures": "0xFD8FF53E",
         "SecureBootModel": "j137",
         "CPU Generation": cpu_data.CPUGen.skylake.value,
-        "Max OS Supported": os_data.os_data.max_os,
+        "Max OS Supported": os_data.os_data.sequoia,
         "Wireless Model": device_probe.Broadcom.Chipsets.AppleBCMWLANBusInterfacePCIe,
         "Bluetooth Model": bluetooth_data.bluetooth_data.UART,
         "Ethernet Chipset": "Aquantia",
