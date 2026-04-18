@@ -1475,7 +1475,7 @@ smbios_dictionary = {
         "FirmwareFeatures": "0x8FDAFF066",
         "SecureBootModel": "j223",
         "CPU Generation": cpu_data.CPUGen.coffee_lake.value,
-        "Max OS Supported": os_data.os_data.equoia,
+        "Max OS Supported": os_data.os_data.sequoia,
         "Wireless Model": device_probe.Broadcom.Chipsets.AppleBCMWLANBusInterfacePCIe,
         "Bluetooth Model": bluetooth_data.bluetooth_data.UART,
         "Screen Size": 13,
