@@ -83,7 +83,7 @@ class ModernWireless(BaseHardware):
             "Modern Wireless Extended": {
                 PatchType.OVERWRITE_SYSTEM_VOLUME: {
                     "/usr/libexec": {
-                        "wifip2pd": f"13.7.2-{self._xnu_major}",
+                        "airportd": f"13.7.2-{self._xnu_major}",
                     },
                 },
                 PatchType.MERGE_SYSTEM_VOLUME: {
