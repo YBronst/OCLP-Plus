@@ -1,6 +1,5 @@
 # OCLP-Plus changelog
 ## 3.2.0
-- Added MacPro7,1 to SupportedSMBIOS to allow selection in GUI.
 - Updated Max OS Supported for Intel Macs: only iMac20,x, MBP16,1/2/4, and MacPro7,1.
 - Capped other Intel models (e.g. MBP 15,x, iMac 19,x) at sequoia.
 
