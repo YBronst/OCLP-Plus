@@ -292,7 +292,7 @@ AGDPSupport = [
      "iMac19,2",
     # "iMac20,1",
     # "iMac20,2",
-    # "iMacPro1,1",
+     "iMacPro1,1",
     # "MacPro6,1",
 ]
 
