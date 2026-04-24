@@ -106,7 +106,7 @@ SupportedSMBIOS = [
     "Xserve2,1",
     "Xserve3,1",
     # iMac Pro
-    # "iMacPro1,1",
+    "iMacPro1,1",
 ]
 
 # Audio
