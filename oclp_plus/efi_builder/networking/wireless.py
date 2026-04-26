@@ -3,6 +3,7 @@ wireless.py: Class for handling Wireless Networking Patches, invocation from bui
 """
 
 import logging
+import binascii
 
 from .. import support
 
@@ -56,10 +57,36 @@ class BuildWirelessNetworking:
     device_probe.Broadcom.Chipsets.AirPortBrcm4360,
     device_probe.Broadcom.Chipsets.AppleBCMWLANBusInterfacePCIe
 ]:
+                is_t2_modern = self.computer.wifi.chipset == device_probe.Broadcom.Chipsets.AppleBCMWLANBusInterfacePCIe
+                min_kernel = "25.0.0" if is_t2_modern else "23.0.0"
+
                 support.BuildSupport(self.model, self.constants, self.config).enable_kext("IOSkywalkFamily.kext", self.constants.ioskywalk_version, self.constants.ioskywalk_path)
+                support.BuildSupport(self.model, self.constants, self.config).get_kext_by_bundle_path("IOSkywalkFamily.kext")["MinKernel"] = min_kernel
+
                 support.BuildSupport(self.model, self.constants, self.config).enable_kext("IO80211FamilyLegacy.kext", self.constants.io80211legacy_version, self.constants.io80211legacy_path)
+                support.BuildSupport(self.model, self.constants, self.config).get_kext_by_bundle_path("IO80211FamilyLegacy.kext")["MinKernel"] = min_kernel
+
                 support.BuildSupport(self.model, self.constants, self.config).get_kext_by_bundle_path("IO80211FamilyLegacy.kext/Contents/PlugIns/AirPortBrcmNIC.kext")["Enabled"] = True
-                support.BuildSupport(self.model, self.constants, self.config).get_item_by_kv(self.config["Kernel"]["Block"], "Identifier", "com.apple.iokit.IOSkywalkFamily")["Enabled"] = True
+                support.BuildSupport(self.model, self.constants, self.config).get_kext_by_bundle_path("IO80211FamilyLegacy.kext/Contents/PlugIns/AirPortBrcmNIC.kext")["MinKernel"] = min_kernel
+
+                skywalk_block = support.BuildSupport(self.model, self.constants, self.config).get_item_by_kv(self.config["Kernel"]["Block"], "Identifier", "com.apple.iokit.IOSkywalkFamily")
+                skywalk_block["Enabled"] = True
+                skywalk_block["MinKernel"] = min_kernel
+
+                logging.info("- Enabling AMFIPass for Skywalk")
+                support.BuildSupport(self.model, self.constants, self.config).enable_kext("AMFIPass.kext", self.constants.amfipass_version, self.constants.amfipass_path)
+                support.BuildSupport(self.model, self.constants, self.config).get_kext_by_bundle_path("AMFIPass.kext")["MinKernel"] = min_kernel
+
+                if "-amfipassbeta" not in self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"]:
+                    self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"] += " -amfipassbeta"
+                if self.model == "MacPro7,1":
+                    logging.info("- Adding IOName spoof for MacPro7,1 Wi-Fi")
+                    arpt_path = self.computer.wifi.pci_path or "PciRoot(0x0)/Pci(0x1C,0x5)/Pci(0x0,0x0)"
+                    if arpt_path not in self.config["DeviceProperties"]["Add"]:
+                        self.config["DeviceProperties"]["Add"][arpt_path] = {}
+                    self.config["DeviceProperties"]["Add"][arpt_path]["IOName"] = "pci14e4,43a0"
+                    logging.info("- Lowering SIP for MacPro7,1 root patching support")
+                    self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["csr-active-config"] = binascii.unhexlify("03080000")
             # This works around OCLP spoofing the Wifi card and therefore unable to actually detect the correct device
             if self.computer.wifi.chipset == device_probe.Broadcom.Chipsets.AirportBrcmNIC and self.constants.validate is False and self.computer.wifi.country_code:
                 support.BuildSupport(self.model, self.constants, self.config).enable_kext("AirportBrcmFixup.kext", self.constants.airportbcrmfixup_version, self.constants.airportbcrmfixup_path)
@@ -119,11 +146,38 @@ class BuildWirelessNetworking:
         elif smbios_data.smbios_dictionary[self.model]["Wireless Model"] == device_probe.Broadcom.Chipsets.AirportBrcmNIC:
             support.BuildSupport(self.model, self.constants, self.config).enable_kext("AirportBrcmFixup.kext", self.constants.airportbcrmfixup_version, self.constants.airportbcrmfixup_path)
 
-        if smbios_data.smbios_dictionary[self.model]["Wireless Model"] in [device_probe.Broadcom.Chipsets.AirportBrcmNIC, device_probe.Broadcom.Chipsets.AirPortBrcm4360]:
+        if self.model == "MacPro7,1":
+            logging.info("- Adding IOName spoof for MacPro7,1 Wi-Fi")
+            arpt_path = "PciRoot(0x0)/Pci(0x1C,0x5)/Pci(0x0,0x0)"
+            if arpt_path not in self.config["DeviceProperties"]["Add"]:
+                self.config["DeviceProperties"]["Add"][arpt_path] = {}
+            self.config["DeviceProperties"]["Add"][arpt_path]["IOName"] = "pci14e4,43a0"
+
+        if smbios_data.smbios_dictionary[self.model]["Wireless Model"] in [device_probe.Broadcom.Chipsets.AirportBrcmNIC, device_probe.Broadcom.Chipsets.AirPortBrcm4360, device_probe.Broadcom.Chipsets.AppleBCMWLANBusInterfacePCIe]:
+            is_t2_modern = smbios_data.smbios_dictionary[self.model]["Wireless Model"] == device_probe.Broadcom.Chipsets.AppleBCMWLANBusInterfacePCIe
+            min_kernel = "25.0.0" if is_t2_modern else "23.0.0"
+
             support.BuildSupport(self.model, self.constants, self.config).enable_kext("IOSkywalkFamily.kext", self.constants.ioskywalk_version, self.constants.ioskywalk_path)
+            support.BuildSupport(self.model, self.constants, self.config).get_kext_by_bundle_path("IOSkywalkFamily.kext")["MinKernel"] = min_kernel
+
             support.BuildSupport(self.model, self.constants, self.config).enable_kext("IO80211FamilyLegacy.kext", self.constants.io80211legacy_version, self.constants.io80211legacy_path)
+            support.BuildSupport(self.model, self.constants, self.config).get_kext_by_bundle_path("IO80211FamilyLegacy.kext")["MinKernel"] = min_kernel
+
             support.BuildSupport(self.model, self.constants, self.config).get_kext_by_bundle_path("IO80211FamilyLegacy.kext/Contents/PlugIns/AirPortBrcmNIC.kext")["Enabled"] = True
-            support.BuildSupport(self.model, self.constants, self.config).get_item_by_kv(self.config["Kernel"]["Block"], "Identifier", "com.apple.iokit.IOSkywalkFamily")["Enabled"] = True
+            support.BuildSupport(self.model, self.constants, self.config).get_kext_by_bundle_path("IO80211FamilyLegacy.kext/Contents/PlugIns/AirPortBrcmNIC.kext")["MinKernel"] = min_kernel
+
+            skywalk_block = support.BuildSupport(self.model, self.constants, self.config).get_item_by_kv(self.config["Kernel"]["Block"], "Identifier", "com.apple.iokit.IOSkywalkFamily")
+            skywalk_block["Enabled"] = True
+            skywalk_block["MinKernel"] = min_kernel
+
+            logging.info("- Enabling AMFIPass for Skywalk")
+            support.BuildSupport(self.model, self.constants, self.config).enable_kext("AMFIPass.kext", self.constants.amfipass_version, self.constants.amfipass_path)
+            support.BuildSupport(self.model, self.constants, self.config).get_kext_by_bundle_path("AMFIPass.kext")["MinKernel"] = min_kernel
+            if "-amfipassbeta" not in self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"]:
+                self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"] += " -amfipassbeta"
+            if self.model == "MacPro7,1":
+                logging.info("- Lowering SIP for MacPro7,1 root patching support")
+                self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["csr-active-config"] = binascii.unhexlify("03080000")
 
 
     def _wowl_handling(self) -> None:
