@@ -1,7 +1,12 @@
 # OCLP-Plus changelog
 ## 3.2.0
-- Updated Max OS Supported for Intel Macs: only iMac20,x, MBP16,1/2/4, and MacPro7,1.
-- Capped other Intel models (e.g. MBP 15,x, iMac 19,x) at sequoia.
+- **Summary of changes:**
+ *  **Final update for the MacPro7,1 (2019) on macOS Tahoe.**
+ *  **Accurate Hardware Spoofing**: restored Wi-Fi support for Tahoe26.x
+ *  **Automated Security Configuration**: Integrated SIP `03080000` and the boot-arg `-amfipassbeta` or the MacPro7,1 with root patch.
+ *  **Ecosystem Synchronization**: Updated model metadata and global security thresholds to align with the new support lifecycle introduced by macOS Tahoe.
+ *  **Updated Max OS Supported** for Intel Macs: only iMac20,x, MBP16,1/2/4, and MacPro7,1.
+ *  **Capped other Intel models** (e.g. MBP 15,x, iMac 19,x) at sequoia.
 
 ## 3.1.9
 - Includes legacy patches for macOS versions earlier than 15.x.
