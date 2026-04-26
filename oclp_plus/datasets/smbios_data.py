@@ -2828,7 +2828,7 @@ smbios_dictionary = {
         "FirmwareFeatures": "0x8FDAFF066",
         "SecureBootModel": "j160",
         "CPU Generation": cpu_data.CPUGen.coffee_lake.value,
-        "Max OS Supported": os_data.os_data.max_os,
+        "Max OS Supported": os_data.os_data.sequoia,
         "Wireless Model": device_probe.Broadcom.Chipsets.AppleBCMWLANBusInterfacePCIe,
         "Bluetooth Model": bluetooth_data.bluetooth_data.UART,
         "Ethernet Chipset": "Aquantia",

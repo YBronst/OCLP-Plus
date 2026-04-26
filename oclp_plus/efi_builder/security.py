@@ -90,6 +90,6 @@ class BuildSecurity:
             logging.info("- Disabling SecureBootModel")
             self.config["Misc"]["Security"]["SecureBootModel"] = "Disabled"
 
-        if smbios_data.smbios_dictionary[self.model]["Max OS Supported"] < os_data.os_data.sonoma:
+        if smbios_data.smbios_dictionary[self.model]["Max OS Supported"] < os_data.os_data.tahoe:
             logging.info("- Enabling AMFIPass")
             support.BuildSupport(self.model, self.constants, self.config).enable_kext("AMFIPass.kext", self.constants.amfipass_version, self.constants.amfipass_path)
