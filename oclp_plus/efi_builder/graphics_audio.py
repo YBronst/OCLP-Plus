@@ -348,7 +348,7 @@ class BuildGraphicsAudio:
                             "use-layout-id": 1,
                         }
                     support.BuildSupport(self.model, self.constants, self.config).enable_kext("AppleALC.kext", self.constants.applealc_version, self.constants.applealc_path)
-            elif (self.model.startswith("MacPro") and self.model != "MacPro6,1") or self.model.startswith("Xserve"):
+            elif (self.model.startswith("MacPro") and self.model != "MacPro6,1" and self.model != "MacPro7,1") or self.model.startswith("Xserve"):
                 # Used to enable Audio support for non-standard dGPUs
                 support.BuildSupport(self.model, self.constants, self.config).enable_kext("AppleALC.kext", self.constants.applealc_version, self.constants.applealc_path)
 

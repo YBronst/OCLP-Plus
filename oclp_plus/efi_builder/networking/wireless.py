@@ -51,7 +51,11 @@ class BuildWirelessNetworking:
         self.config["#Revision"]["Hardware-Wifi"] = f"{utilities.friendly_hex(self.computer.wifi.vendor_id)}:{utilities.friendly_hex(self.computer.wifi.device_id)}"
 
         if isinstance(self.computer.wifi, device_probe.Broadcom):
-            if self.computer.wifi.chipset in [device_probe.Broadcom.Chipsets.AirportBrcmNIC, device_probe.Broadcom.Chipsets.AirPortBrcm4360]:
+            if self.computer.wifi.chipset in [
+    device_probe.Broadcom.Chipsets.AirportBrcmNIC,
+    device_probe.Broadcom.Chipsets.AirPortBrcm4360,
+    device_probe.Broadcom.Chipsets.AppleBCMWLANBusInterfacePCIe
+]:
                 support.BuildSupport(self.model, self.constants, self.config).enable_kext("IOSkywalkFamily.kext", self.constants.ioskywalk_version, self.constants.ioskywalk_path)
                 support.BuildSupport(self.model, self.constants, self.config).enable_kext("IO80211FamilyLegacy.kext", self.constants.io80211legacy_version, self.constants.io80211legacy_path)
                 support.BuildSupport(self.model, self.constants, self.config).get_kext_by_bundle_path("IO80211FamilyLegacy.kext/Contents/PlugIns/AirPortBrcmNIC.kext")["Enabled"] = True
@@ -164,7 +168,7 @@ class BuildWirelessNetworking:
                     arpt_path = "PciRoot(0x0)/Pci(0x1C,0x4)/Pci(0x0,0x0)"
                 elif self.model in ("iMac13,1", "iMac13,2"):
                     arpt_path = "PciRoot(0x0)/Pci(0x1C,0x3)/Pci(0x0,0x0)"
-                elif self.model in ("MacPro4,1", "MacPro5,1"):
+                elif self.model in ("MacPro4,1", "MacPro5,1", "MacPro7,1"):
                     arpt_path = "PciRoot(0x0)/Pci(0x1C,0x5)/Pci(0x0,0x0)"
                 else:
                     # Assumes we have a laptop with Intel chipset
