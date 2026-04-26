@@ -62,7 +62,7 @@ class BuildGraphicsAudio:
         Primarily for Mac Pros and systems with Nvidia Maxwell/Pascal GPUs
         """
 
-        if self.constants.allow_oc_everywhere is False and self.constants.serial_settings != "None":
+        if self.constants.allow_oc_everywhere is False and self.constants.serial_settings != "None" and self.model not in model_array.TahoeNativeModels:
             if not support.BuildSupport(self.model, self.constants, self.config).get_kext_by_bundle_path("WhateverGreen.kext")["Enabled"] is True:
                 support.BuildSupport(self.model, self.constants, self.config).enable_kext("WhateverGreen.kext", self.constants.whatevergreen_version, self.constants.whatevergreen_path)
 
@@ -125,14 +125,16 @@ class BuildGraphicsAudio:
                                 self.config["DeviceProperties"]["Add"][device.pci_path].update({"disable-metal": 1, "force-compat": 1})
                             else:
                                 self.config["DeviceProperties"]["Add"][device.pci_path] = {"disable-metal": 1, "force-compat": 1}
-                            support.BuildSupport(self.model, self.constants, self.config).enable_kext("WhateverGreen.kext", self.constants.whatevergreen_version, self.constants.whatevergreen_path)
+                            if self.model not in model_array.TahoeNativeModels:
+                                support.BuildSupport(self.model, self.constants, self.config).enable_kext("WhateverGreen.kext", self.constants.whatevergreen_version, self.constants.whatevergreen_path)
                             self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"].update({"nvda_drv": binascii.unhexlify("31")})
                             if "nvda_drv" not in self.config["NVRAM"]["Delete"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]:
                                 self.config["NVRAM"]["Delete"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"] += ["nvda_drv"]
                         else:
                             if "ngfxgl=1 ngfxcompat=1" not in self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"]:
                                 self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"] += " ngfxgl=1 ngfxcompat=1"
-                            support.BuildSupport(self.model, self.constants, self.config).enable_kext("WhateverGreen.kext", self.constants.whatevergreen_version, self.constants.whatevergreen_path)
+                            if self.model not in model_array.TahoeNativeModels:
+                                support.BuildSupport(self.model, self.constants, self.config).enable_kext("WhateverGreen.kext", self.constants.whatevergreen_version, self.constants.whatevergreen_path)
                             self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"].update({"nvda_drv": binascii.unhexlify("31")})
                             if "nvda_drv" not in self.config["NVRAM"]["Delete"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]:
                                 self.config["NVRAM"]["Delete"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"] += ["nvda_drv"]
@@ -184,9 +186,10 @@ class BuildGraphicsAudio:
         iMac Nvidia Kepler MXM Handler
         """
 
-        if not support.BuildSupport(self.model, self.constants, self.config).get_kext_by_bundle_path("WhateverGreen.kext")["Enabled"] is True:
-            # Ensure WEG is enabled as we need if for Backlight patching
-            support.BuildSupport(self.model, self.constants, self.config).enable_kext("WhateverGreen.kext", self.constants.whatevergreen_navi_version, self.constants.whatevergreen_navi_path)
+        if self.model not in model_array.TahoeNativeModels:
+            if not support.BuildSupport(self.model, self.constants, self.config).get_kext_by_bundle_path("WhateverGreen.kext")["Enabled"] is True:
+                # Ensure WEG is enabled as we need if for Backlight patching
+                support.BuildSupport(self.model, self.constants, self.config).enable_kext("WhateverGreen.kext", self.constants.whatevergreen_navi_version, self.constants.whatevergreen_navi_path)
         if self.model in ["iMac11,1", "iMac11,2", "iMac11,3", "iMac10,1"]:
             logging.info("- Adding Nvidia Brightness Control and DRM patches")
             self.config["DeviceProperties"]["Add"][backlight_path] = {
@@ -232,9 +235,10 @@ class BuildGraphicsAudio:
         """
 
         logging.info("- Adding AMD DRM patches")
-        if not support.BuildSupport(self.model, self.constants, self.config).get_kext_by_bundle_path("WhateverGreen.kext")["Enabled"] is True:
-            # Ensure WEG is enabled as we need if for Backlight patching
-            support.BuildSupport(self.model, self.constants, self.config).enable_kext("WhateverGreen.kext", self.constants.whatevergreen_navi_version, self.constants.whatevergreen_navi_path)
+        if self.model not in model_array.TahoeNativeModels:
+            if not support.BuildSupport(self.model, self.constants, self.config).get_kext_by_bundle_path("WhateverGreen.kext")["Enabled"] is True:
+                # Ensure WEG is enabled as we need if for Backlight patching
+                support.BuildSupport(self.model, self.constants, self.config).enable_kext("WhateverGreen.kext", self.constants.whatevergreen_navi_version, self.constants.whatevergreen_navi_path)
 
         if self.model == "iMac9,1":
             logging.info("- Adding iMac9,1 Brightness Control and DRM patches")

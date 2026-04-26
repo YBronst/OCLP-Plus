@@ -47,7 +47,7 @@ class BuildSMBIOS:
         """
 
         if self.constants.allow_oc_everywhere is False or self.constants.allow_native_spoofs is True:
-            if self.constants.serial_settings == "None":
+            if self.constants.serial_settings == "None" or self.model in model_array.TahoeNativeModels:
                 # Credit to Parrotgeek1 for boot.efi and hv_vmm_present patch sets
                 logging.info("- Enabling Board ID exemption patch")
                 support.BuildSupport(self.model, self.constants, self.config).get_item_by_kv(self.config["Booter"]["Patch"], "Comment", "Skip Board ID check")["Enabled"] = True
@@ -158,6 +158,7 @@ class BuildSMBIOS:
         if (
             self.constants.allow_oc_everywhere is False
             and self.model not in ["Xserve2,1", "Dortania1,1"]
+            and self.model not in model_array.TahoeNativeModels
             and ((self.model in model_array.Missing_USB_Map or self.model in model_array.Missing_USB_Map_Ventura) or self.constants.serial_settings in ["Moderate", "Advanced"])
         ):
             new_map_ls = Path(self.constants.map_contents_folder) / Path("Info.plist")
@@ -165,7 +166,7 @@ class BuildSMBIOS:
             self._strip_usb_map(new_map_ls, self.model, self.spoofed_model, self.constants.serial_settings)
             self._strip_usb_map(new_map_ls_tahoe, self.model, self.spoofed_model, self.constants.serial_settings)
 
-        if self.constants.allow_oc_everywhere is False and self.model not in ["iMac7,1", "Xserve2,1", "Dortania1,1"] and self.constants.disallow_cpufriend is False and self.constants.serial_settings != "None":
+        if self.constants.allow_oc_everywhere is False and self.model not in ["iMac7,1", "Xserve2,1", "Dortania1,1"] and self.model not in model_array.TahoeNativeModels and self.constants.disallow_cpufriend is False and self.constants.serial_settings != "None":
             # Adjust CPU Friend Data to correct SMBIOS
             new_cpu_ls = Path(self.constants.pp_contents_folder) / Path("Info.plist")
             cpu_config = plistlib.load(Path(new_cpu_ls).open("rb"))

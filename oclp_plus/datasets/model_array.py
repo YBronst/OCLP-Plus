@@ -110,6 +110,15 @@ SupportedSMBIOS = [
     "iMacPro1,1",
 ]
 
+TahoeNativeModels = [
+    "iMac20,1",
+    "iMac20,2",
+    "MacBookPro16,1",
+    "MacBookPro16,2",
+    "MacBookPro16,4",
+    "MacPro7,1",
+]
+
 # Audio
 
 LegacyAudio = [
