@@ -79,13 +79,19 @@ class BuildWirelessNetworking:
 
                 if "-amfipassbeta" not in self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"]:
                     self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"] += " -amfipassbeta"
-                if self.model == "MacPro7,1":
-                    logging.info("- Adding IOName spoof for MacPro7,1 Wi-Fi")
-                    arpt_path = self.computer.wifi.pci_path or "PciRoot(0x0)/Pci(0x1C,0x5)/Pci(0x0,0x0)"
+                if self.model in ["MacPro7,1", "MacBookPro16,1", "MacBookPro16,2", "MacBookPro16,4"]:
+                    logging.info(f"- Adding IOName spoof for {self.model} Wi-Fi")
+                    if self.model == "MacPro7,1":
+                        arpt_path = self.computer.wifi.pci_path or "PciRoot(0x0)/Pci(0x1C,0x5)/Pci(0x0,0x0)"
+                    elif self.model in ["MacBookPro16,1", "MacBookPro16,4"]:
+                        arpt_path = self.computer.wifi.pci_path or "PciRoot(0x0)/Pci(0x1D,0x0)/Pci(0x0,0x0)"
+                    elif self.model == "MacBookPro16,2":
+                        arpt_path = self.computer.wifi.pci_path or "PciRoot(0x0)/Pci(0x14,0x3)"
+
                     if arpt_path not in self.config["DeviceProperties"]["Add"]:
                         self.config["DeviceProperties"]["Add"][arpt_path] = {}
                     self.config["DeviceProperties"]["Add"][arpt_path]["IOName"] = "pci14e4,43a0"
-                    logging.info("- Lowering SIP for MacPro7,1 root patching support")
+                    logging.info(f"- Lowering SIP for {self.model} root patching support")
                     self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["csr-active-config"] = binascii.unhexlify("03080000")
             # This works around OCLP spoofing the Wifi card and therefore unable to actually detect the correct device
             if self.computer.wifi.chipset == device_probe.Broadcom.Chipsets.AirportBrcmNIC and self.constants.validate is False and self.computer.wifi.country_code:
@@ -146,9 +152,15 @@ class BuildWirelessNetworking:
         elif smbios_data.smbios_dictionary[self.model]["Wireless Model"] == device_probe.Broadcom.Chipsets.AirportBrcmNIC:
             support.BuildSupport(self.model, self.constants, self.config).enable_kext("AirportBrcmFixup.kext", self.constants.airportbcrmfixup_version, self.constants.airportbcrmfixup_path)
 
-        if self.model == "MacPro7,1":
-            logging.info("- Adding IOName spoof for MacPro7,1 Wi-Fi")
-            arpt_path = "PciRoot(0x0)/Pci(0x1C,0x5)/Pci(0x0,0x0)"
+        if self.model in ["MacPro7,1", "MacBookPro16,1", "MacBookPro16,2", "MacBookPro16,4"]:
+            logging.info(f"- Adding IOName spoof for {self.model} Wi-Fi")
+            if self.model == "MacPro7,1":
+                arpt_path = "PciRoot(0x0)/Pci(0x1C,0x5)/Pci(0x0,0x0)"
+            elif self.model in ["MacBookPro16,1", "MacBookPro16,4"]:
+                arpt_path = "PciRoot(0x0)/Pci(0x1D,0x0)/Pci(0x0,0x0)"
+            elif self.model == "MacBookPro16,2":
+                arpt_path = "PciRoot(0x0)/Pci(0x14,0x3)"
+
             if arpt_path not in self.config["DeviceProperties"]["Add"]:
                 self.config["DeviceProperties"]["Add"][arpt_path] = {}
             self.config["DeviceProperties"]["Add"][arpt_path]["IOName"] = "pci14e4,43a0"
@@ -175,8 +187,8 @@ class BuildWirelessNetworking:
             support.BuildSupport(self.model, self.constants, self.config).get_kext_by_bundle_path("AMFIPass.kext")["MinKernel"] = min_kernel
             if "-amfipassbeta" not in self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"]:
                 self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"] += " -amfipassbeta"
-            if self.model == "MacPro7,1":
-                logging.info("- Lowering SIP for MacPro7,1 root patching support")
+            if self.model in ["MacPro7,1", "MacBookPro16,1", "MacBookPro16,2", "MacBookPro16,4"]:
+                logging.info(f"- Lowering SIP for {self.model} root patching support")
                 self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["csr-active-config"] = binascii.unhexlify("03080000")
 
 
@@ -224,6 +236,10 @@ class BuildWirelessNetworking:
                     arpt_path = "PciRoot(0x0)/Pci(0x1C,0x3)/Pci(0x0,0x0)"
                 elif self.model in ("MacPro4,1", "MacPro5,1", "MacPro7,1"):
                     arpt_path = "PciRoot(0x0)/Pci(0x1C,0x5)/Pci(0x0,0x0)"
+                elif self.model in ("MacBookPro16,1", "MacBookPro16,4"):
+                    arpt_path = "PciRoot(0x0)/Pci(0x1D,0x0)/Pci(0x0,0x0)"
+                elif self.model == "MacBookPro16,2":
+                    arpt_path = "PciRoot(0x0)/Pci(0x14,0x3)"
                 else:
                     # Assumes we have a laptop with Intel chipset
                     # iMac11,x-12,x also apply

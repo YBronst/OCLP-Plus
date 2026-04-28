@@ -63,7 +63,7 @@ class BuildSMBIOS:
             support.BuildSupport(self.model, self.constants, self.config).get_item_by_kv(self.config["ACPI"]["Patch"], "Comment", "EHC1 to EH01")["Enabled"] = True
             support.BuildSupport(self.model, self.constants, self.config).get_item_by_kv(self.config["ACPI"]["Patch"], "Comment", "EHC2 to EH02")["Enabled"] = True
 
-        if self.model == self.constants.override_smbios and self.model != "MacPro7,1":
+        if self.model == self.constants.override_smbios and self.model not in ["MacPro7,1", "MacBookPro16,1", "MacBookPro16,2", "MacBookPro16,4"]:
             if "-no_compat_check" not in self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"]:
                 logging.info("- Adding -no_compat_check")
                 self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"] += " -no_compat_check"

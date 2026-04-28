@@ -326,7 +326,7 @@ class BuildFirmware:
             # AppleMCEReporter is very picky about which models attach to the kext
             # Commonly it will kernel panic on multi-socket systems, however even on single-socket systems it may cause instability
             # To avoid any issues, we'll disable it if the spoof is set to an affected SMBIOS
-            affected_smbios = ["MacPro6,1", "MacPro7,1", "iMacPro1,1"]
+            affected_smbios = ["MacPro6,1", "MacPro7,1", "iMacPro1,1", "MacBookPro16,1", "MacBookPro16,2", "MacBookPro16,4"]
             if self.model not in affected_smbios:
                 # If MacPro6,1 host spoofs, we can safely enable it
                 if self.constants.override_smbios in affected_smbios or generate_smbios.set_smbios_model_spoof(self.model) in affected_smbios:

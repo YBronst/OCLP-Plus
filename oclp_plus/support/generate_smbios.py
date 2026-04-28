@@ -21,10 +21,10 @@ def set_smbios_model_spoof(model):
             return "MacBookAir8,1"
         elif model.startswith("MacBookPro"):
             if smbios_data.smbios_dictionary[model]["Screen Size"] == 13:
-                return "MacBookPro14,1"
+                return "MacBookPro16,2"
             elif smbios_data.smbios_dictionary[model]["Screen Size"] >= 15:
-                # 15" and 17"
-                return "MacBookPro14,3"
+                # 15", 16" and 17"
+                return "MacBookPro16,1"
             else:
                 # Unknown Model
                 raise Exception(f"Unknown SMBIOS for spoofing: {model}")

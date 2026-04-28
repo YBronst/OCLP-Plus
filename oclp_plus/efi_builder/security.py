@@ -47,7 +47,7 @@ class BuildSecurity:
                 self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"] += " -amfipassbeta"
             # Adds AutoPkgInstaller for Automatic OCLP-Plus installation
             # Only install if running the GUI (AutoPkg-Assets.pkg requires the GUI)
-            if self.constants.wxpython_variant is True and self.model != "MacPro7,1":
+            if self.constants.wxpython_variant is True and self.model not in ["MacPro7,1", "MacBookPro16,1", "MacBookPro16,2", "MacBookPro16,4"]:
                 support.BuildSupport(self.model, self.constants, self.config).enable_kext("AutoPkgInstaller.kext", self.constants.autopkg_version, self.constants.autopkg_path)
             if self.constants.custom_sip_value:
                 logging.info(f"- Setting SIP value to: {self.constants.custom_sip_value}")
@@ -66,7 +66,7 @@ class BuildSecurity:
 
             # Patch KC UUID panics due to RSR installation
             # - Ref: https://github.com/dortania/OpenCore-Legacy-Patcher/issues/1019
-            if self.model != "MacPro7,1":
+            if self.model not in ["MacPro7,1", "MacBookPro16,1", "MacBookPro16,2", "MacBookPro16,4"]:
                 logging.info("- Enabling KC UUID mismatch patch")
                 self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"] += " -nokcmismatchpanic"
                 support.BuildSupport(self.model, self.constants, self.config).enable_kext("RSRHelper.kext", self.constants.rsrhelper_version, self.constants.rsrhelper_path)
@@ -85,7 +85,7 @@ class BuildSecurity:
             self.config["NVRAM"]["Add"]["4D1FDA02-38C7-4A6A-9CC6-4BCCA8B30102"]["OCLP-Settings"] += " -allow_amfi"
             # CSLVFixup simply patches out __RESTRICT and __restrict out of the Music.app Binary
             # Ref: https://pewpewthespells.com/blog/blocking_code_injection_on_ios_and_os_x.html
-            if self.model != "MacPro7,1":
+            if self.model not in ["MacPro7,1", "MacBookPro16,1", "MacBookPro16,2", "MacBookPro16,4"]:
                 support.BuildSupport(self.model, self.constants, self.config).enable_kext("CSLVFixup.kext", self.constants.cslvfixup_version, self.constants.cslvfixup_path)
 
         if self.constants.secure_status is False:
