@@ -15,8 +15,9 @@
    * **iMac**: iMac20,1, iMac20,2
    * **MacBook Pro**: MacBookPro16,1, MacBookPro16,2, MacBookPro16,4
    * **Mac Pro**: MacPro7,1
+
 * **This set creates only $${\color{red} draft \ templates}$$** for manual configuration and does not generate ready-made EFI folders.
-* **To $${\color{red} to avoid \ unexpected \ errors}$$, I recommend using lzhoang2801** [`OpCore Simplify`](https://github.com/lzhoang2801/OpCore-Simplify).
+   * **To $${\color{red} to avoid \ unexpected \ errors}$$, I recommend using lzhoang2801** [`OpCore Simplify`](https://github.com/lzhoang2801/OpCore-Simplify).
 
 * **OCLP-Plus (Tahoe Patch Set)** supports macOS Sequoia 15.7.5 (24G624) and earlier, such as OpenCore Legacy Patcher 2.4.1.
 * **Note**: For macOS Sequoia and earlier, compatibility and SMBIOS requirements follow the standard limits of each respective operating system.
