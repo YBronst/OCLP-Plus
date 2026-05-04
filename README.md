@@ -17,7 +17,7 @@
    * **Mac Pro**: MacPro7,1
 
 * **This set creates only $${\color{red} draft \ templates}$$** for manual configuration and does not generate ready-made EFI folders.
-   * **To $${\color{red} to avoid \ unexpected \ errors}$$, I recommend using lzhoang2801** [`OpCore Simplify`](https://github.com/lzhoang2801/OpCore-Simplify).
+   * **$${\color{red}To \ avoid \ unexpected \ errors}$$, I recommend using lzhoang2801** [`OpCore Simplify`](https://github.com/lzhoang2801/OpCore-Simplify).
 
 * **OCLP-Plus (Tahoe Patch Set)** supports macOS Sequoia 15.7.5 (24G624) and earlier, such as OpenCore Legacy Patcher 2.4.1.
 * **Note**: For macOS Sequoia and earlier, compatibility and SMBIOS requirements follow the standard limits of each respective operating system.
@@ -67,6 +67,14 @@ Starting with macOS Tahoe Beta 2, Apple removed the legacy `AppleHDA.kext`. This
 *  **OpenCore:** Set Misc > Security > SecureBootModel to Disabled.
 >
 >  **Clover:** Ensure RtVariables > HWTarget is NOT set (must be empty) or commented out (e.g., HWTarget?) to keep Apple Secure Boot inactive.
+
+### 🧹 Root Volume Dirty Error
+> **If you get this error:**
+>
+>  **"Root volume dirty, unpatch to continue"** during the Post-Install Root Patch process, it means macOS Tahoe has flagged the system volume due to incomplete operations or APFS snapshot issues.
+>
+>  **To fix it:** Open OCLP-Plus on Tahoe. Go to Post-Install Root Patch and click Revert Root Patches (or Unpatch).
+>  **Reboot your Mac.** Open OCLP-Plus again and **re-run the Post-Install Root Patch** normally.
 
 ### 🔄 Apply Changes: Reset NVRAM
 > To ensure these new security settings (SIP, AMFI, and Secure Boot) take effect, you MUST perform a Reset NVRAM after saving your config.plist.
