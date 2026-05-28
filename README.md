@@ -5,6 +5,10 @@
 
 </div>
 
+## ⚠️ This repository is intended exclusively for advanced Hackintosh systems running macOS Tahoe 26.x.
+* This is NOT a project to create patches for unsupported Macs.
+* It does not include additional fixes for graphics acceleration or frameworks for creating root patches for unsupported Macs.
+
 ## 🌟 Key Features
 
 ### 🏔️ Full macOS Tahoe Support
