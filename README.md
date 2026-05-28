@@ -116,6 +116,7 @@ sudo bless --mount /Volumes/YourVolumeName --bootefi --last-sealed-snapshot
 *   [`CloverHackyColor`](https://github.com/CloverHackyColor) (Hackintosh essentials and beyond)
 *   [`YBronst`](https://github.com/YBronst) (Developer and optimizer of tools for macOS Tahoe26.x)
 *   [`laobamac`](https://github.com/laobamac) (Developer OCLP-Mod, Chinese language)
+*   [`crystall1nedev`](https://github.com/crystall1nedev) (Eva Isabella Luna)
 *   *Full list of OCLP contributors can be found in the [`original repository`](https://github.com/dortania/OpenCore-Legacy-Patcher).*
 
 ## ⚖️ Disclaimer
