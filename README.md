@@ -1,3 +1,13 @@
+## 📌 **Hackintosh is already history.**
+ 
+ **Since December 2025, I have been maintaining OCLP-Plus on my own. Looking back, I feel saddened by the end of an era.** 
+ * This project was officially archived on **June 28, 2026**.
+ * 📢 **Important notice for users:**
+ * Unless something extraordinary happens, **no further updates** will be released.
+ * Existing versions **will remain functional**.
+ * _Best wishes and prosperity to all._
+
+
 <div align="center">
 <img src="https://github.com/YBronst/OCLP-Plus/blob/main/docs/images/OC-Patcher.png"  alt="OC-Patcher Logo" width="256" />
 
