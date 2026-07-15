@@ -101,12 +101,13 @@ Starting with macOS Tahoe Beta 2, Apple removed the legacy `AppleHDA.kext`. This
 <details>
 <summary>🛠️ <b>Advanced: Manual Force Restore (Emergency only)</b></summary>
 
-If the "Revert Root Patches" button fails to clear the dirty state, you can manually force macOS to boot from the last sealed snapshot via Terminal:
+**Emergency Recovery:** If you encounter a boot loop after patching, boot into **Recovery Mode** and restore the snapshot to the last sealed state using these terminal commands:
 
 ```bash
-sudo bless --mount /Volumes/YourVolumeName --bootefi --last-sealed-snapshot
+mount -uw /Volumes/YourDiskName 
+bless --mount /Volumes/YourDiskName --bootefi --last-sealed-snapshot
 ```
-*Replace `YourVolumeName` with your actual system drive name (e.g., `Macintosh\ HD`).*
+*Replace "YourDiskName" with the actual name of your drive (e.g., Macintosh\ HD).*
 </details>
 
 
