@@ -1,7 +1,7 @@
 ## 📌 **Hackintosh is already history.**
  
  **Since December 2025, I have been maintaining OCLP-Plus on my own. Looking back, I feel saddened by the end of an era.** 
- * This project was officially аrozen on **June 28, 2026**.
+ * This project was officially frozen on **June 28, 2026**.
  * 📢 **Important notice for users:**
  * Unless something extraordinary happens, **no further updates** will be released.
  * Existing versions **will remain functional**.
