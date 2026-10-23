@@ -121,14 +121,16 @@ bless --mount /Volumes/YourDiskName --bootefi --last-sealed-snapshot
 ## 📝 [`Change Log`](https://github.com/YBronst/OCLP-Plus/blob/main/CHANGELOG.md)
 
 ## 📜 Credits
-*   [`Acidanthera`](https://github.com/Acidanthera) (OpenCorePkg, Lilu, etc.)
-*   [`Dortania Team`](https://github.com/dortania) (Original OCLP authors)
-*   [`lzhoang2801`](https://github.com/kgp-macPro/OCLP-lzhoang2801) (Original Tahoe patchset)
-*   [`CloverHackyColor`](https://github.com/CloverHackyColor) (Hackintosh essentials and beyond)
-*   [`YBronst`](https://github.com/YBronst) (Developer and optimizer of tools for macOS Tahoe26.x)
-*   [`laobamac`](https://github.com/laobamac) (Developer OCLP-Mod, Chinese language)
-*   [`crystall1nedev`](https://github.com/crystall1nedev) (Eva Isabella Luna)
-*   *Full list of OCLP contributors can be found in the [`original repository`](https://github.com/dortania/OpenCore-Legacy-Patcher).*
+
+* [`Dortania OpenCore Legacy Patcher Team`](https://github.com/dortania/OpenCore-Legacy-Patcher)
+* [`InsanelyMac community`](https://www.insanelymac.com/)
+* [`Acidanthera`](https://github.com/Acidanthera) (OpenCorePkg, Lilu, etc.)
+* [`Dortania Team`](https://github.com/dortania) (Original OCLP authors)
+* [`lzhoang2801`](https://github.com/kgp-macPro/OCLP-lzhoang2801) (Original Tahoe patchset)
+* [`CloverHackyColor`](https://github.com/CloverHackyColor) (Hackintosh essentials and beyond)
+* [`YBronst`](https://github.com/YBronst) (Developer and optimizer of tools for macOS Tahoe26.x)
+* [`laobamac`](https://github.com/laobamac) (Developer OCLP-Mod, Chinese language)
+* [`crystall1nedev`](https://github.com/crystall1nedev) (Eva Isabella Luna)
 
 ## ⚖️ Disclaimer
 This is an **experimental Project** intended for advanced users and complex Hackintosh/Legacy Mac configurations. Use at your own risk.
